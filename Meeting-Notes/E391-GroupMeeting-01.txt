@@ -1,0 +1,30 @@
+-------------------------------
+SUBJECT: Sub-System Distribution and Timeline Planning
+DATE: February 21, 2023
+PLACE: Online Discord
+TIME: 5.00PM-5.30PM
+-------------------------------
+NOTES:
+
+Sub-Systems are assigned as follow
+	Jaydon Alexis  -> System ID
+	Phi Lam 	   -> Optimal Control
+	Idil Bil       -> Analog Electronics
+	Kerem Oktay    -> Digital Electronics
+
+Timeline for the first phase (design phase)
+	1st week (Feb 20 - Feb 26) -> Decide high level RCGs and initial model of the gripper
+	2nd week (Feb 27 - Mar 05) -> Design the systems and the testing procedures
+	3rd week (Mar 06 - Mar 12) -> Complete the design and start prototyping
+	4th week (Mar 13 - Mar 17) -> Complete prototypes and write the system reports
+
+Discussion on component pruchase
+	mainly through ece stores (email the ece stores guy)
+	3d printing through teaching staff??
+	need to accound for lead time when pruchasing motors/PCBs/components
+-------------------------------
+ACTION ITEMS:
+	
+Next meeting on Februray 23, 2023
+	Prepare some ideas for the gripper mechanism and its functionalities
+-------------------------------
