@@ -1,0 +1,63 @@
+-------------------------------
+SUBJECT: High Level System Description and Inital Ideas for the Mechanism
+DATE: February 23, 2023
+PLACE: Kaiser
+TIME: 5.00PM-7.00PM
+-------------------------------
+NOTES:
+
+High Level System
+
+	Operation
+		Go down
+		See the object
+		Close the fingers
+		Keep them closed until reached destination
+		See the destination
+		Open the fingers
+
+	Features Needed
+		Manual reset
+		Digital LED I/O
+		Mech interface plate
+		Power ratings
+
+	Sensors
+		Ultrasonic Sensors: See the object
+		Strain Gage: Finger force
+		Inductive Sensor: See the destination
+
+	Objects to pick up
+		Tennis balls
+			easy to get around with
+			not many different "object types"
+		Cups/Bottles/Cans
+			can go different types and orientations of objects
+	
+	Extra features
+		UI to manually control the gripper
+		LCD Screen to display the state
+
+Concept
+
+	Ideas
+		3 fingers with unbalanced orientation
+		gears and two fingers
+		1 finger stable, 1 finger scooping
+		finer grabing methods with more motors
+
+	Chosen
+		3 fingers with unbalanced orientation
+		finer grabing methods with more motors
+
+
+-------------------------------
+ACTION ITEMS:
+
+Jaydon -> finish mech models by March 3
+Kerem/Idil -> finish circuit (both analog and digital) by March 6
+Phi -> get started with programming workflow, PID Gains decided by March 6
+
+Next Meeting March 3
+	finish up mech and choose motor during the meeting
+-------------------------------
