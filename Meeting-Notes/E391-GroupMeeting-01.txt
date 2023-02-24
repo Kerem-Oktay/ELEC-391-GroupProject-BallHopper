@@ -8,7 +8,7 @@ NOTES:
 
 Sub-Systems are assigned as follow
 	Jaydon Alexis  -> System ID
-	Phi Lam 	   -> Optimal Control
+	Phi Lam        -> Optimal Control
 	Idil Bil       -> Analog Electronics
 	Kerem Oktay    -> Digital Electronics
 
