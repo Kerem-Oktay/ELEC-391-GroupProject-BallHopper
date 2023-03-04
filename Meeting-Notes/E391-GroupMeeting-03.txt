@@ -1,0 +1,55 @@
+-------------------------------
+SUBJECT: Controller Discussions and Preliminary PLD Design 
+DATE: March 3, 2023
+PLACE: MCLD
+TIME: 5.30PM-7.00PM
+-------------------------------
+NOTES:
+
+Updates
+	Preliminary mechanism design is complete
+	Looking for parts to build the prototype
+		bearings, gears, actuators and etc.
+	
+Controller design
+	multivariable??
+		finger force
+		position
+	must relate the "ticks" of the encoder into degrees of motor and then into linear movement
+	encoder of a given motor only has 12 ticks so must design gears to get "big" rotations into "small" linear movement
+	mainly build around the position
+	desired input can be either
+		fully closed fingers
+			not really design??
+			just makes the motor go all the way
+		partially closed fingers
+			more design
+			must decide a value first
+			can be any value for the design phase??
+			can it be changed by the mcu during the operation? or does it have to be preset?
+	decided to go with partially closed fingers approach
+
+PLD design
+	counter to count the up/down movement of encoder pulses
+	counter will be the clock of the seq. cct. and each pulse value will be increased/decreased
+	latch/flip-flop cct. for memory
+		hold the value of the counter cct. and feed to mcu when requested
+	approaches
+		simple latches with clear signal from mcu
+			will know ticks between ISRs
+		simple latches with no clear?
+			not sure, latches might need a clear in some way
+		flip-flop	
+			more robust?
+			clk signal from mcu triggered with a separate ISR
+			might have to be careful with timing as there should be some time given to pld to update output 
+	more info is needed
+
+-------------------------------
+ACTION ITEMS:
+
+March 6 -> cct design complete, matlab model progress
+
+Decide and write down RCGs (high-level and sub-system)
+	reach out to TAs to clarify 5 RCG statement
+-------------------------------
