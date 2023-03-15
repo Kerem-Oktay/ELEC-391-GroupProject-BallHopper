@@ -1,0 +1,100 @@
+-------------------------------
+SUBJECT: RCGs 
+DATE: March 13, 2023
+PLACE: EDC
+TIME: 8.00PM-10.00PM
+-------------------------------
+
+RCG:
+    - Analog
+        - PCB size
+            - R: Board must be 8cm x 3cm 
+            - C: Board size must fit into 10cm x 5cm area
+            - G: Minimize board size as much as possible
+        - Trace line 
+            - R: Trace width large enough to support 5A current
+            - C: Trace width has to allow us to fit all the components on the board
+            - G: Minimize trace width
+        - Motor Current Trace
+            - R: Motor current trace has to be 0.5 inches away from encoder feedback trace
+            - C: It can't be closer than x inches 
+            - G: As close as possible to minmize board area
+        - 
+            - R: 
+            - C: 
+            - G:             
+        - 
+            - R: 
+            - C: 
+            - G: 
+
+    - Digital
+        - IC slew rate
+            - R: IC must be able to handle a slew rate of x V/s
+            - C: IC must have a large enough slew rate that it doesn't destort the signal
+            - G: IC must have a slew rate as large as possible
+        - Daugther board size
+            - R: Board must be 8cm x 3cm 
+            - C: Board size must fit into 10cm x 5cm area
+            - G: Minimize board size as much as possible
+        - Pulse counting
+            - R: For every 100 pulses number of missed pulses must be less than 5 
+            - C: IC needs to oprate at 33 mHz, pulses shouldn't be faster than 33mHz
+            - G: Minimize missed pulses
+        - 
+            - R: 
+            - C: 
+            - G:             
+        - 
+            - R: 
+            - C: 
+            - G: 
+
+    - Mech, System ID:
+        - Worm gears
+            - R: Friction coefficient must not be more than x
+            - C: Friction coefficeint must be samll enough such that it would not load the motor more than the claw
+            - G: Friction coefficient should be as small as possible
+        - Bearing
+            - R: Bearing must withstand 5.5N of thrust 
+            - C: Bearing has to be light enough 
+            - G: Bearing should withstand as much thrust load as possible
+        - Material
+            - R: Material has to be strong enough to withstand x N of shear force
+            - C: Material must not be overly dense
+            - G: Material has to be strong enough to withstand force as much as possible
+        - 
+            - R: 
+            - C: 
+            - G:             
+        - 
+            - R: 
+            - C: 
+            - G: 
+
+    - Controls:
+        - Rise time 
+            - R: 
+            - C: 
+            - G: 
+        - Peak time
+            - R: 
+            - C: 
+            - G: 
+        - Settle time
+            - R: Settle time needs to be less than 8s
+            - C: It can't close fast enough to break something
+            - G: Minimize settle time as much as possible
+        - Overshoot 
+            - R: Overshoot needs to be less than 10%
+            - C: Cannot run faster than contorl frequency
+            - G: Minimize overshoot as much as possible
+        - Undershoot
+            - R: 
+            - C: 
+            - G: 
+        - ISR
+            - R: ISR frequency needs to be smaller than 12x the most dominant pole
+            - C: Frequency cannot be faster than 10x
+            - G: Frequency needs to be as close to 10x the most dominant pole
+            

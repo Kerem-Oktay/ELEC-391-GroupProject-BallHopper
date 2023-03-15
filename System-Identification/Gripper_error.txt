@@ -1,8 +1,0 @@
-Constrained Instances: 'Hub-1', 'Needle_Bearing-1'
-Constraint Name: Coincident48
-Error Details: Constrained components are not resolved. Resolve components and try again. The constraint has been ignored.
----------------------------------------------------------------------------------
-Constrained Instances: 'Hub-1', 'Needle_Bearing-1'
-Constraint Name: Coincident49
-Error Details: Constrained components are not resolved. Resolve components and try again. The constraint has been ignored.
----------------------------------------------------------------------------------
