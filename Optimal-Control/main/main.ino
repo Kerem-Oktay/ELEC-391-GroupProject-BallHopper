@@ -1,3 +1,4 @@
+#include <TimerOne.h>
 #include <HCSR04.h>
 
 #define PLDCOMM 10
@@ -17,7 +18,7 @@
 int pulse = 0b0;
 bool home = true;
 
-UltraSonicDistanceSensor distanceSensor(3, 4) //Initialize sensor
+UltraSonicDistanceSensor distanceSensor(3, 4); //Initialize sensor
 
 void setup()
 {
@@ -28,14 +29,14 @@ void setup()
   pinMode(IN1PIN, OUTPUT);
   pinMode(IN2PIN, OUTPUT);
   pinMode(LEDPIN, OUTPUT);
-  pinMode(SENSOR2PIN);
+  pinMode(SENSOR2PIN,INPUT);
 
   //LED states
   Timer1.initialize(1000000);
   Timer1.pwm(LEDPIN, SEVENTYPERC);
 
   // attachInterrupt(digitalPinToInterrupt(SENSOR1PIN,closeClaw, RISING);
-  attachInterrupt(digitalPinToInterrupt(SENSOR2PIN, openClaw, RISING);
+  attachInterrupt(digitalPinToInterrupt(SENSOR2PIN), openClaw, RISING);
 }
 
 void loop()
@@ -113,5 +114,3 @@ void openClaw()
   digitalWrite(IN2PIN, LOW);
   home == false; // returns home
 }
-
-
