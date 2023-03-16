@@ -1,69 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <SimscapeMultibodyImportXML version="2.0" xmlns="urn:mathworks:SimscapeMultibody:import" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-<Created by="" on="03/11/23||17:22:25" using="Simscape Multibody Link Version 7.4" from="SolidWorks 28.3.0"/>
+<Created by="" on="03/15/23||19:32:52" using="Simscape Multibody Link Version 7.4" from="SolidWorks 28.3.0"/>
 <ModelUnits mass="kilogram" length="inch"/>
 <DataUnits mass="kilogram" length="meter"/>
-<RootAssembly name="Gripper" uid="Gripper" version="592">
+<RootAssembly name="Gripper" uid="Gripper" version="600">
 <AssemblyFile name="Gripper.SLDASM" type="SolidWorks Assembly"/>
 <InstanceTree>
-<Instance name="Connecting_Rod-1" uid="Connecting_Rod-1" entityUid="Connecting_Rod*:*Default">
-<Transform>
-<Rotation>0.4537169954248978 -0.54234757127011723 -0.70710678118655335 0.76699529081031503 0.64165272840906717 1.9428902930940239e-16 0.45371699542490512 -0.54234757127012645 0.70710678118654158</Rotation>
-<Translation>0.026046261635491279 -0.058686113584219116 0.018975193823626203</Translation>
-</Transform>
-</Instance>
-<Instance name="Connecting_Rod-2" uid="Connecting_Rod-2" entityUid="Connecting_Rod*:*Default">
-<Transform>
-<Rotation>0.45371699542497418 -0.54234757127006528 0.70710678118654435 0.76699529081023121 0.64165272840916743 5.5619571448506377e-16 -0.45371699542497085 0.54234757127005995 0.70710678118655068</Rotation>
-<Translation>0.01897519382362069 -0.058686113584223279 -0.026046261635485901</Translation>
-</Transform>
-</Instance>
-<Instance name="Fingertip-4" uid="Fingertip-4" entityUid="Fingertip*:*Grip">
-<Transform>
-<Rotation>-0.70710678118654424 0.66712010482737605 -0.23441579668425871 7.6403727095053497e-16 -0.33151399890537037 -0.94345029997863172 -0.70710678118655113 -0.66712010482736983 0.2344157966842555</Rotation>
-<Translation>0.062362313479295405 -0.17493103099551446 -0.041149110043698929</Translation>
-</Transform>
-</Instance>
-<Instance name="Connecting_Rod-3" uid="Connecting_Rod-3" entityUid="Connecting_Rod*:*Default">
-<Transform>
-<Rotation>-0.6416527284087914 0.76699529081054574 0 0.76699529081054574 0.6416527284087914 0 0 0 -0.99999999999999978</Rotation>
-<Translation>-0.031834976454051186 -0.058686113584207479 0.0049999999999999966</Translation>
-</Transform>
-</Instance>
-<Instance name="Fingertip-5" uid="Fingertip-5" entityUid="Fingertip*:*Grip">
-<Transform>
-<Rotation>0 -0.943450299978842 0.33151399890477201 0 -0.33151399890477207 -0.94345029997884189 0.99999999999999989 0 0</Rotation>
-<Translation>-0.073193629503493035 -0.17493103099546811 -0.014999999999999999</Translation>
-</Transform>
-</Instance>
-<Instance name="Fingertip-6" uid="Fingertip-6" entityUid="Fingertip*:*Grip">
-<Transform>
-<Rotation>0.70710678118655357 0.66712010482740713 -0.23441579668414178 -1.0863705768304752e-16 -0.33151399890520999 -0.94345029997868812 -0.70710678118654158 0.66712010482741846 -0.23441579668414561</Rotation>
-<Translation>0.041149110043719656 -0.174931030995502 0.062362313479316658</Translation>
-</Transform>
-</Instance>
-<Instance name="Power_Screw-1" uid="Power_Screw-1" entityUid="Power_Screw*:*98935A807">
-<Transform>
-<Rotation>0 0.74454102044000359 0.66757671385553752 1 0 0 0 0.66757671385553752 -0.74454102044000359</Rotation>
-<Translation>0 -0.0053419999999999995 0</Translation>
-</Transform>
-</Instance>
 <Instance name="Hub-1" uid="Hub-1" entityUid="Hub*:*Default">
 <Transform>
 <Rotation>-1.0000000000000002 0 0 0 1 0 0 0 -1.0000000000000002</Rotation>
 <Translation>0 0.0040000000000000001 0</Translation>
 </Transform>
 </Instance>
+<Instance name="Fingertip-6" uid="Fingertip-6" entityUid="Fingertip*:*Grip">
+<Transform>
+<Rotation>0.70710678118655246 0.69963026130231731 -0.10255485103126155 1.0377983195031248e-15 -0.14503446121556449 -0.9894266041803762 -0.70710678118654258 0.69963026130232686 -0.10255485103126441</Rotation>
+<Translation>0.06519496811719154 -0.16254394543351283 0.086408171552788765</Translation>
+</Transform>
+</Instance>
+<Instance name="Connecting_Rod-3" uid="Connecting_Rod-3" entityUid="Connecting_Rod*:*Default">
+<Transform>
+<Rotation>-0.70142256686736959 0.71274566479859469 0 0.71274566479859469 0.70142256686736959 0 0 0 -1</Rotation>
+<Translation>-0.031563728323992103 -0.048488596908684137 0.0049999999999999932</Translation>
+</Transform>
+</Instance>
+<Instance name="Connecting_Rod-1" uid="Connecting_Rod-1" entityUid="Connecting_Rod*:*Default">
+<Transform>
+<Rotation>0.49598065350921 -0.50398729284037536 -0.70710678118655235 0.71274566479856483 0.70142256686739979 6.0910478050235639e-16 0.49598065350921605 -0.50398729284038279 0.70710678118654291</Rotation>
+<Translation>0.025854460243356015 -0.048488596908685504 0.018783392431490926</Translation>
+</Transform>
+</Instance>
 <Instance name="Nut-1" uid="Nut-1" entityUid="Nut*:*Default">
 <Transform>
 <Rotation>-0.99999999999999989 -1.6653345369377348e-16 0 0 2.3084234772617627e-16 1 -1.6653345369377348e-16 0.99999999999999989 -2.3084234772617627e-16</Rotation>
-<Translation>0 -0.062977849942162906 0</Translation>
+<Translation>0 -0.052481484074346649 0</Translation>
 </Transform>
 </Instance>
-<Instance name="Power_Nut-1" uid="Power_Nut-1" entityUid="Power_Nut*:*94815A011">
+<Instance name="Connecting_Rod-2" uid="Connecting_Rod-2" entityUid="Connecting_Rod*:*Default">
 <Transform>
-<Rotation>0 1 0 0 0 -1 -1 0 0</Rotation>
-<Translation>0 -0.052541912442162914 0</Translation>
+<Rotation>0.4959806535092478 -0.50398729284035093 0.70710678118654313 0.71274566479852031 0.70142256686744497 5.2540437278647545e-16 -0.4959806535092422 0.50398729284034427 0.70710678118655168</Rotation>
+<Translation>0.018783392431488868 -0.048488596908687662 -0.025854460243354083</Translation>
+</Transform>
+</Instance>
+<Instance name="Power_Screw-1" uid="Power_Screw-1" entityUid="Power_Screw*:*98935A807">
+<Transform>
+<Rotation>0 0.55441116198907525 0.83224291133173589 1 0 0 0 0.83224291133173589 -0.55441116198907525</Rotation>
+<Translation>0 -0.0053420000000000065 0</Translation>
+</Transform>
+</Instance>
+<Instance name="Fingertip-4" uid="Fingertip-4" entityUid="Fingertip*:*Grip">
+<Transform>
+<Rotation>-0.70710678118654402 0.69963026130231709 -0.10255485103132105 -1.9168694409543713e-16 -0.14503446121564609 -0.9894266041803641 -0.70710678118655101 -0.69963026130230999 0.1025548510313203</Rotation>
+<Translation>0.086408171552779037 -0.16254394543352171 -0.065194968117182048</Translation>
+</Transform>
+</Instance>
+<Instance name="Fingertip-5" uid="Fingertip-5" entityUid="Fingertip*:*Grip">
+<Transform>
+<Rotation>0 -0.98942660418038397 0.14503446121551164 0 -0.14503446121551167 -0.98942660418038386 0.99999999999999989 0 0</Rotation>
+<Translation>-0.10719960810982324 -0.16254394543350714 -0.014999999999999994</Translation>
 </Transform>
 </Instance>
 </InstanceTree>
@@ -89,15 +83,15 @@
 <InstancePath>
 <Uid>Nut-1</Uid>
 </InstancePath>
-<Position>0.02799999999999999 -0.0019999999999999992 0</Position>
+<Position>0.027999999999999997 -0.0019999999999999992 0</Position>
 <Axis>0 -0.99999999999999989 -1.1564823173178727e-16</Axis>
 </ConstraintGeometry>
 <ConstraintGeometry geomType="plane">
 <InstancePath>
 <Uid>Connecting_Rod-3</Uid>
 </InstancePath>
-<Position>0 0.0049999999999999975 0.0069999999999999975</Position>
-<Axis>0 0 -0.99999999999999978</Axis>
+<Position>0 0.0049999999999999975 0.0070000000000000001</Position>
+<Axis>0 0 -1</Axis>
 </ConstraintGeometry>
 </Coincident>
 <Coincident name="Coincident21">
@@ -105,15 +99,15 @@
 <InstancePath>
 <Uid>Nut-1</Uid>
 </InstancePath>
-<Position>-0.018384776310850049 0.02121320343559658 0</Position>
+<Position>-0.018384776310850042 0.02121320343559658 0</Position>
 <Axis>0.70710678118655357 0.70710678118654124 -1.1564823173178717e-16</Axis>
 </ConstraintGeometry>
 <ConstraintGeometry geomType="plane">
 <InstancePath>
 <Uid>Connecting_Rod-1</Uid>
 </InstancePath>
-<Position>0 0.0049999999999999975 0.0069999999999999993</Position>
-<Axis>0 0 -1</Axis>
+<Position>0 0.0049999999999999906 0.0070000000000000045</Position>
+<Axis>0 0 -1.0000000000000002</Axis>
 </ConstraintGeometry>
 </Coincident>
 <Coincident name="Coincident26">
@@ -121,15 +115,15 @@
 <InstancePath>
 <Uid>Nut-1</Uid>
 </InstancePath>
-<Position>-0.018384776310850344 -0.021213203435596323 0</Position>
+<Position>-0.018384776310850337 -0.021213203435596323 0</Position>
 <Axis>0.70710678118654369 -0.70710678118655113 1.1564823173178717e-16</Axis>
 </ConstraintGeometry>
 <ConstraintGeometry geomType="plane">
 <InstancePath>
 <Uid>Connecting_Rod-2</Uid>
 </InstancePath>
-<Position>0 0.0049999999999999975 0.0029999999999999992</Position>
-<Axis>-1.1102230246251565e-16 0 1</Axis>
+<Position>0 0.0049999999999999906 0.0029999999999999957</Position>
+<Axis>1.1102230246251565e-16 0 0.99999999999999989</Axis>
 </ConstraintGeometry>
 </Coincident>
 <Coincident name="Coincident30">
@@ -137,15 +131,15 @@
 <InstancePath>
 <Uid>Connecting_Rod-2</Uid>
 </InstancePath>
-<Position>0.055 0.0049999999999999767 0.020337683152348747</Position>
-<Axis>1.1102230246251565e-16 0 -1</Axis>
+<Position>0.055 0.0049999999999999975 0.020337683152348747</Position>
+<Axis>-1.1102230246251565e-16 0 -0.99999999999999989</Axis>
 </ConstraintGeometry>
 <ConstraintGeometry geomType="line">
 <InstancePath>
 <Uid>Fingertip-4</Uid>
 </InstancePath>
-<Position>0.075124819391487088 -0.062927966974483496 -0.14921445260697408</Position>
-<Axis>-1.0000000000000002 0 0</Axis>
+<Position>0.075124819391487047 -0.062927966974483496 -0.149214452606974</Position>
+<Axis>-1 1.1102230246251565e-16 0</Axis>
 </ConstraintGeometry>
 </Coincident>
 <Coincident name="Coincident33">
@@ -153,14 +147,14 @@
 <InstancePath>
 <Uid>Connecting_Rod-3</Uid>
 </InstancePath>
-<Position>0.054999999999999979 0.0050000000000000114 0.020337683152348737</Position>
-<Axis>0 0 -0.99999999999999978</Axis>
+<Position>0.055000000000000021 0.0049999999999999975 0.020337683152348743</Position>
+<Axis>0 0 -1</Axis>
 </ConstraintGeometry>
 <ConstraintGeometry geomType="line">
 <InstancePath>
 <Uid>Fingertip-5</Uid>
 </InstancePath>
-<Position>0.075124819391487019 -0.062927966974483523 -0.14921445260697405</Position>
+<Position>0.075124819391487019 -0.062927966974483523 -0.14921445260697402</Position>
 <Axis>-0.99999999999999989 0 0</Axis>
 </ConstraintGeometry>
 </Coincident>
@@ -169,14 +163,14 @@
 <InstancePath>
 <Uid>Connecting_Rod-1</Uid>
 </InstancePath>
-<Position>0.054999999999999993 0.0049999999999999975 0.02033768315234874</Position>
-<Axis>0 0 -1</Axis>
+<Position>0.055000000000000007 0.0049999999999999906 0.020337683152348754</Position>
+<Axis>0 0 -1.0000000000000002</Axis>
 </ConstraintGeometry>
 <ConstraintGeometry geomType="line">
 <InstancePath>
 <Uid>Fingertip-6</Uid>
 </InstancePath>
-<Position>0.07512481939148706 -0.06292796697448351 -0.14921445260697405</Position>
+<Position>0.075124819391487047 -0.062927966974483482 -0.14921445260697402</Position>
 <Axis>-1 0 0</Axis>
 </ConstraintGeometry>
 </Coincident>
@@ -240,7 +234,7 @@
 <InstancePath>
 <Uid>Fingertip-6</Uid>
 </InstancePath>
-<Position>0.04081407978245391 -0.10500328452178895 -0.15646926207859072</Position>
+<Position>0.040814079782453896 -0.10500328452178895 -0.15646926207859069</Position>
 <Axis>-1 0 0</Axis>
 </ConstraintGeometry>
 </Coincident>
@@ -256,7 +250,7 @@
 <InstancePath>
 <Uid>Fingertip-6</Uid>
 </InstancePath>
-<Position>0.0099999999999999846 -0.10500328452178898 -0.16396926207859072</Position>
+<Position>0.010000000000000004 -0.10500328452178896 -0.16396926207859069</Position>
 <Axis>1 0 0</Axis>
 </ConstraintGeometry>
 </Coincident>
@@ -272,7 +266,7 @@
 <InstancePath>
 <Uid>Fingertip-5</Uid>
 </InstancePath>
-<Position>0.04081407978245389 -0.10500328452178898 -0.15646926207859072</Position>
+<Position>0.04081407978245389 -0.10500328452178896 -0.15646926207859066</Position>
 <Axis>-0.99999999999999989 0 0</Axis>
 </ConstraintGeometry>
 </Coincident>
@@ -288,7 +282,7 @@
 <InstancePath>
 <Uid>Fingertip-5</Uid>
 </InstancePath>
-<Position>0.009999999999999995 -0.10500328452178899 -0.16396926207859072</Position>
+<Position>0.009999999999999995 -0.10500328452178898 -0.16396926207859067</Position>
 <Axis>0.99999999999999989 0 0</Axis>
 </ConstraintGeometry>
 </Coincident>
@@ -304,8 +298,8 @@
 <InstancePath>
 <Uid>Fingertip-4</Uid>
 </InstancePath>
-<Position>0.040814079782453931 -0.10500328452178896 -0.15646926207859074</Position>
-<Axis>-1.0000000000000002 0 0</Axis>
+<Position>0.040814079782453924 -0.10500328452178893 -0.15646926207859066</Position>
+<Axis>-1 1.1102230246251565e-16 0</Axis>
 </ConstraintGeometry>
 </Coincident>
 <Coincident name="Coincident44">
@@ -320,8 +314,8 @@
 <InstancePath>
 <Uid>Fingertip-4</Uid>
 </InstancePath>
-<Position>0.010000000000000007 -0.10500328452178895 -0.16396926207859075</Position>
-<Axis>1.0000000000000002 0 0</Axis>
+<Position>0.010000000000000007 -0.10500328452178895 -0.16396926207859067</Position>
+<Axis>1 -1.1102230246251565e-16 0</Axis>
 </ConstraintGeometry>
 </Coincident>
 <Coincident name="Coincident45">
@@ -329,15 +323,15 @@
 <InstancePath>
 <Uid>Connecting_Rod-2</Uid>
 </InstancePath>
-<Position>0 0 -0.0060000000000000019</Position>
-<Axis>-1.1102230246251565e-16 0 1</Axis>
+<Position>0 0 -0.0059999999999999967</Position>
+<Axis>1.1102230246251565e-16 0 0.99999999999999989</Axis>
 </ConstraintGeometry>
 <ConstraintGeometry geomType="plane">
 <InstancePath>
 <Uid>Fingertip-4</Uid>
 </InstancePath>
-<Position>0.026000000000000009 -0.15075887801864707 -0.022086852203419785</Position>
-<Axis>1.0000000000000002 0 0</Axis>
+<Position>0.026000000000000016 -0.15075887801864701 -0.022086852203419771</Position>
+<Axis>1 -1.1102230246251565e-16 0</Axis>
 </ConstraintGeometry>
 </Coincident>
 <Coincident name="Coincident46">
@@ -345,14 +339,14 @@
 <InstancePath>
 <Uid>Connecting_Rod-1</Uid>
 </InstancePath>
-<Position>0 0 0.015999999999999997</Position>
-<Axis>0 0 -1</Axis>
+<Position>0 0 0.016000000000000007</Position>
+<Axis>0 0 -1.0000000000000002</Axis>
 </ConstraintGeometry>
 <ConstraintGeometry geomType="plane">
 <InstancePath>
 <Uid>Fingertip-6</Uid>
 </InstancePath>
-<Position>0.0040000000000000001 -0.15075887801864707 -0.022086852203419743</Position>
+<Position>0.0039999999999999827 -0.15075887801864707 -0.022086852203419743</Position>
 <Axis>-1 0 0</Axis>
 </ConstraintGeometry>
 </Coincident>
@@ -361,31 +355,15 @@
 <InstancePath>
 <Uid>Connecting_Rod-3</Uid>
 </InstancePath>
-<Position>0 0 -0.0059999999999999967</Position>
-<Axis>0 0 0.99999999999999978</Axis>
+<Position>0 0 -0.0059999999999999993</Position>
+<Axis>0 0 1</Axis>
 </ConstraintGeometry>
 <ConstraintGeometry geomType="plane">
 <InstancePath>
 <Uid>Fingertip-5</Uid>
 </InstancePath>
-<Position>0.025999999999999992 -0.15075887801864707 -0.022086852203419799</Position>
+<Position>0.025999999999999995 -0.15075887801864707 -0.022086852203419757</Position>
 <Axis>0.99999999999999989 0 0</Axis>
-</ConstraintGeometry>
-</Coincident>
-<Coincident name="Coincident50">
-<ConstraintGeometry geomType="line">
-<InstancePath>
-<Uid>Hub-1</Uid>
-</InstancePath>
-<Position>0 0.031937999999999994 0</Position>
-<Axis>0 -1 0</Axis>
-</ConstraintGeometry>
-<ConstraintGeometry geomType="line">
-<InstancePath>
-<Uid>Power_Screw-1</Uid>
-</InstancePath>
-<Position>-0.080431543837628391 0 0</Position>
-<Axis>1 0 0</Axis>
 </ConstraintGeometry>
 </Coincident>
 <Coincident name="Coincident51">
@@ -404,22 +382,6 @@
 <Axis>1 0 0</Axis>
 </ConstraintGeometry>
 </Coincident>
-<Coincident name="Coincident52">
-<ConstraintGeometry geomType="line">
-<InstancePath>
-<Uid>Power_Screw-1</Uid>
-</InstancePath>
-<Position>-0.080431543837628391 0 0</Position>
-<Axis>1 0 0</Axis>
-</ConstraintGeometry>
-<ConstraintGeometry geomType="line">
-<InstancePath>
-<Uid>Power_Nut-1</Uid>
-</InstancePath>
-<Position>0 0 -0.0045640625000000004</Position>
-<Axis>0 0 1</Axis>
-</ConstraintGeometry>
-</Coincident>
 <Coincident name="Coincident54">
 <ConstraintGeometry geomType="line">
 <InstancePath>
@@ -432,40 +394,8 @@
 <InstancePath>
 <Uid>Power_Screw-1</Uid>
 </InstancePath>
-<Position>-0.080431543837628391 0 0</Position>
+<Position>-0.080431543837628378 0 0</Position>
 <Axis>1 0 0</Axis>
-</ConstraintGeometry>
-</Coincident>
-<Parallel name="Parallel2">
-<ConstraintGeometry geomType="plane">
-<InstancePath>
-<Uid>Nut-1</Uid>
-</InstancePath>
-<Position>0.0050799999999999934 0.0087988181024498974 0.015001</Position>
-<Axis>-0.8660254037844386 -0.50000000000000011 0</Axis>
-</ConstraintGeometry>
-<ConstraintGeometry geomType="plane">
-<InstancePath>
-<Uid>Power_Nut-1</Uid>
-</InstancePath>
-<Position>-0.0087312499999999994 -0.0050409895378619209 0.0045640625000000004</Position>
-<Axis>-0.49999999999999983 -0.86602540378443882 0</Axis>
-</ConstraintGeometry>
-</Parallel>
-<Coincident name="Coincident56">
-<ConstraintGeometry geomType="plane">
-<InstancePath>
-<Uid>Nut-1</Uid>
-</InstancePath>
-<Position>0 0 0.014999999999999999</Position>
-<Axis>0 0 1</Axis>
-</ConstraintGeometry>
-<ConstraintGeometry geomType="plane">
-<InstancePath>
-<Uid>Power_Nut-1</Uid>
-</InstancePath>
-<Position>0 -0.010081979075723838 -0.0045640625000000004</Position>
-<Axis>0 0 -1</Axis>
 </ConstraintGeometry>
 </Coincident>
 <Coincident name="Coincident57">
@@ -473,7 +403,7 @@
 <InstancePath>
 <Uid>Nut-1</Uid>
 </InstancePath>
-<Position>0.027999999999999994 0.0019999999999999974 0.0075000000000000067</Position>
+<Position>0.027999999999999997 0.0019999999999999974 0.0075000000000000067</Position>
 <Axis>0 -0.99999999999999989 -1.1564823173178727e-16</Axis>
 </ConstraintGeometry>
 <ConstraintGeometry geomType="line">
@@ -481,7 +411,7 @@
 <Uid>Connecting_Rod-3</Uid>
 </InstancePath>
 <Position>0 0.0049999999999999975 7.6902449580246515e-05</Position>
-<Axis>0 0 0.99999999999999978</Axis>
+<Axis>0 0 1</Axis>
 </ConstraintGeometry>
 </Coincident>
 <Coincident name="Coincident58">
@@ -489,15 +419,15 @@
 <InstancePath>
 <Uid>Nut-1</Uid>
 </InstancePath>
-<Position>-0.018384776310850337 -0.021213203435596323 0.0074999999999999997</Position>
+<Position>-0.018384776310850334 -0.021213203435596323 0.0074999999999999997</Position>
 <Axis>-0.70710678118654369 0.70710678118655113 -1.1564823173178717e-16</Axis>
 </ConstraintGeometry>
 <ConstraintGeometry geomType="line">
 <InstancePath>
 <Uid>Connecting_Rod-2</Uid>
 </InstancePath>
-<Position>0 0.0049999999999999906 7.690244958024825e-05</Position>
-<Axis>-1.1102230246251565e-16 0 1</Axis>
+<Position>0 0.0049999999999999906 7.6902449580246515e-05</Position>
+<Axis>1.1102230246251565e-16 0 0.99999999999999989</Axis>
 </ConstraintGeometry>
 </Coincident>
 <Coincident name="Coincident59">
@@ -505,31 +435,31 @@
 <InstancePath>
 <Uid>Nut-1</Uid>
 </InstancePath>
-<Position>-0.023458267465863568 0.016139712280583144 0.0074999999999999997</Position>
+<Position>-0.023458267465863564 0.016139712280583144 0.0074999999999999997</Position>
 <Axis>0.70710678118655357 0.70710678118654124 -1.1564823173178717e-16</Axis>
 </ConstraintGeometry>
 <ConstraintGeometry geomType="line">
 <InstancePath>
 <Uid>Connecting_Rod-1</Uid>
 </InstancePath>
-<Position>0 0.0050000000000000044 7.6902449580246515e-05</Position>
-<Axis>0 0 1</Axis>
+<Position>0 0.0049999999999999975 7.6902449580246515e-05</Position>
+<Axis>0 0 1.0000000000000002</Axis>
 </ConstraintGeometry>
 </Coincident>
 <Coincident name="Coincident60">
-<ConstraintGeometry geomType="line">
-<InstancePath>
-<Uid>Hub-1</Uid>
-</InstancePath>
-<Position>0 0.031937999999999994 0</Position>
-<Axis>0 -1 0</Axis>
-</ConstraintGeometry>
 <ConstraintGeometry geomType="line">
 <InstancePath>
 <Uid>Nut-1</Uid>
 </InstancePath>
 <Position>0 0 0.014999999999999999</Position>
 <Axis>0 0 -1</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="line">
+<InstancePath>
+<Uid>Power_Screw-1</Uid>
+</InstancePath>
+<Position>-0.080431543837628378 0 0</Position>
+<Axis>1 0 0</Axis>
 </ConstraintGeometry>
 </Coincident>
 </Constraints>
@@ -542,7 +472,7 @@
 <PartFile name="Connecting_Rod.SLDPRT" type="SolidWorks Part"/>
 <MassProperties>
 <Mass>0.0041322324544896538</Mass>
-<CenterOfMass>0.027337085641378052 0.0050000000000000001 0.0050000000000000001</CenterOfMass>
+<CenterOfMass>0.027337085641378052 0.0050000000000000001 0.005000000000000001</CenterOfMass>
 <Inertia>3.7888941536103347e-07 1.3212661351226114e-06 1.0137512332204034e-06 0 0 0</Inertia>
 </MassProperties>
 <GeometryFile name="Connecting_Rod_Default_sldprt.STEP" type="STEP"/>
@@ -575,9 +505,9 @@
 <ModelUnits mass="kilogram" length="millimeter"/>
 <PartFile name="Hub.SLDPRT" type="SolidWorks Part"/>
 <MassProperties>
-<Mass>0.051740174020641294</Mass>
-<CenterOfMass>-0.00036161108471101226 0.014667598457243546 -6.2454824269650483e-11</CenterOfMass>
-<Inertia>1.8919357744592833e-05 1.9865663465717136e-05 1.3440063318857151e-05 -5.6090296753706773e-12 8.6660492877165963e-13 -2.0894651834110419e-07</Inertia>
+<Mass>0.051740174020641287</Mass>
+<CenterOfMass>-0.0003616110847110128 0.014667598457243544 -6.2454824530561627e-11</CenterOfMass>
+<Inertia>1.8919357744592833e-05 1.986566346571714e-05 1.3440063318857153e-05 -5.609029675380122e-12 8.6660492871563895e-13 -2.0894651834110421e-07</Inertia>
 </MassProperties>
 <GeometryFile name="Hub_Default_sldprt.STEP" type="STEP"/>
 <VisualProperties>
@@ -592,33 +522,16 @@
 <ModelUnits mass="kilogram" length="millimeter"/>
 <PartFile name="Nut.SLDPRT" type="SolidWorks Part"/>
 <MassProperties>
-<Mass>0.017292062273235344</Mass>
+<Mass>0.017292062273235338</Mass>
 <CenterOfMass>-0.00046506026241049101 0 0.0074999999999999997</CenterOfMass>
 <Inertia>2.6975611492219394e-06 3.2286238420644899e-06 5.2752892671402689e-06 0 0 0</Inertia>
 </MassProperties>
 <GeometryFile name="Nut_Default_sldprt.STEP" type="STEP"/>
 <VisualProperties>
-<Ambient r="0.098039215686274508" g="0" b="0.91764705882352937" a="1"/>
-<Diffuse r="0.098039215686274508" g="0" b="0.91764705882352937" a="1"/>
-<Specular r="0.098039215686274508" g="0" b="0.91764705882352937" a="1"/>
+<Ambient r="0.92549019607843142" g="1" b="0.0078431372549019607" a="1"/>
+<Diffuse r="0.92549019607843142" g="1" b="0.0078431372549019607" a="1"/>
+<Specular r="0.92549019607843142" g="1" b="0.0078431372549019607" a="1"/>
 <Emissive r="0" g="0" b="0" a="1"/>
-<Shininess>0.3125</Shininess>
-</VisualProperties>
-</Part>
-<Part name="Power_Nut" uid="Power_Nut*:*94815A011" version="145">
-<ModelUnits mass="kilogram" length="inch"/>
-<PartFile name="Power_Nut.SLDPRT" type="SolidWorks Part"/>
-<MassProperties>
-<Mass>0.01464036153867471</Mass>
-<CenterOfMass>-1.0753687919967293e-05 1.9652796738700825e-07 -1.1520475903606421e-08</CenterOfMass>
-<Inertia>4.6826417004486344e-07 4.6822262329834362e-07 7.4336232736913948e-07 -5.6580862175733083e-10 -7.8327853195653781e-12 -1.6085992697386196e-12</Inertia>
-</MassProperties>
-<GeometryFile name="Power_Nut_94815A011_sldprt.STEP" type="STEP"/>
-<VisualProperties>
-<Ambient r="0.52941176470588236" g="0.5490196078431373" b="0.5490196078431373" a="1"/>
-<Diffuse r="0.52941176470588236" g="0.5490196078431373" b="0.5490196078431373" a="1"/>
-<Specular r="0.37058823529411761" g="0.3843137254901961" b="0.3843137254901961" a="1"/>
-<Emissive r="0.11117647058823529" g="0.11529411764705882" b="0.11529411764705882" a="1"/>
 <Shininess>0.3125</Shininess>
 </VisualProperties>
 </Part>

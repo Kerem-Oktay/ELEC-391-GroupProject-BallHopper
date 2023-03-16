@@ -19,44 +19,44 @@ smiData.RigidTransform(24).ID = "";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(1).translation = [2.1653543307086616 0.19685039370078702 0.8006961871003444];  % in
+smiData.RigidTransform(1).translation = [2.165354330708662 0.19685039370078786 0.8006961871003444];  % in
 smiData.RigidTransform(1).angle = 3.1415926535897931;  % rad
-smiData.RigidTransform(1).axis = [1 0 5.5511151231257827e-17];
+smiData.RigidTransform(1).axis = [1 0 0];
 smiData.RigidTransform(1).ID = "B[Connecting_Rod-2:-:Fingertip-4]";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(2).translation = [-0.013294612297201969 -2.4774790147434942 -5.8745847483064315];  % in
-smiData.RigidTransform(2).angle = 2.0943951023931948;  % rad
-smiData.RigidTransform(2).axis = [0.57735026918962562 0.57735026918962562 0.57735026918962618];
+smiData.RigidTransform(2).translation = [-0.01329461229719886 -2.4774790147434533 -5.8745847483061757];  % in
+smiData.RigidTransform(2).angle = 2.0943951023931953;  % rad
+smiData.RigidTransform(2).axis = [0.57735026918962518 0.57735026918962584 0.5773502691896264];
 smiData.RigidTransform(2).ID = "F[Connecting_Rod-2:-:Fingertip-4]";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(3).translation = [2.1653543307086611 0.19685039370078702 0.80069618710034407];  % in
+smiData.RigidTransform(3).translation = [2.1653543307086611 0.1968503937007873 0.80069618710034407];  % in
 smiData.RigidTransform(3).angle = 3.1415926535897931;  % rad
 smiData.RigidTransform(3).axis = [1 0 0];
 smiData.RigidTransform(3).ID = "B[Connecting_Rod-3:-:Fingertip-5]";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(4).translation = [-0.013294612297194863 -2.4774790147434427 -5.8745847483060674];  % in
-smiData.RigidTransform(4).angle = 2.0943951023931953;  % rad
-smiData.RigidTransform(4).axis = [0.57735026918962595 0.57735026918962584 0.57735026918962573];
+smiData.RigidTransform(4).translation = [-0.013294612297194419 -2.4774790147434471 -5.8745847483061002];  % in
+smiData.RigidTransform(4).angle = 2.0943951023931957;  % rad
+smiData.RigidTransform(4).axis = [0.57735026918962573 0.57735026918962584 0.57735026918962573];
 smiData.RigidTransform(4).ID = "F[Connecting_Rod-3:-:Fingertip-5]";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(5).translation = [2.1653543307086611 0.19685039370078758 0.80069618710034396];  % in
+smiData.RigidTransform(5).translation = [2.1653543307086616 0.19685039370078702 0.80069618710034451];  % in
 smiData.RigidTransform(5).angle = 3.1415926535897931;  % rad
 smiData.RigidTransform(5).axis = [1 0 0];
 smiData.RigidTransform(5).ID = "B[Connecting_Rod-1:-:Fingertip-6]";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(6).translation = [-0.013294612297202857 -2.47747901474348 -5.8745847483063329];  % in
-smiData.RigidTransform(6).angle = 2.0943951023931953;  % rad
-smiData.RigidTransform(6).axis = [0.57735026918962584 0.57735026918962584 0.57735026918962584];
+smiData.RigidTransform(6).translation = [-0.013294612297197528 -2.477479014743448 -5.874584748306134];  % in
+smiData.RigidTransform(6).angle = 2.0943951023931944;  % rad
+smiData.RigidTransform(6).axis = [0.57735026918962551 0.5773502691896254 0.5773502691896264];
 smiData.RigidTransform(6).ID = "F[Connecting_Rod-1:-:Fingertip-6]";
 
 %Translation Method - Cartesian
@@ -82,9 +82,9 @@ smiData.RigidTransform(9).ID = "B[Hub-1:-:Fingertip-4]";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(10).translation = [0.91240157480314354 -4.1339875795983954 -6.1602071684490189];  % in
-smiData.RigidTransform(10).angle = 2.0943951023931962;  % rad
-smiData.RigidTransform(10).axis = [-0.57735026918962562 -0.57735026918962595 0.57735026918962562];
+smiData.RigidTransform(10).translation = [0.91240157480314776 -4.1339875795980552 -6.1602071684486086];  % in
+smiData.RigidTransform(10).angle = 2.0943951023931957;  % rad
+smiData.RigidTransform(10).axis = [-0.57735026918962562 -0.57735026918962573 0.57735026918962595];
 smiData.RigidTransform(10).ID = "F[Hub-1:-:Fingertip-4]";
 
 %Translation Method - Cartesian
@@ -96,9 +96,9 @@ smiData.RigidTransform(11).ID = "B[Hub-1:-:Fingertip-5]";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(12).translation = [0.78740157480315109 -4.1339875795979983 -6.1602071684484683];  % in
-smiData.RigidTransform(12).angle = 2.0943951023931953;  % rad
-smiData.RigidTransform(12).axis = [-0.57735026918962584 -0.57735026918962584 0.57735026918962584];
+smiData.RigidTransform(12).translation = [0.78740157480315087 -4.1339875795980028 -6.1602071684484816];  % in
+smiData.RigidTransform(12).angle = 2.0943951023931957;  % rad
+smiData.RigidTransform(12).axis = [-0.57735026918962573 -0.57735026918962584 0.57735026918962573];
 smiData.RigidTransform(12).ID = "F[Hub-1:-:Fingertip-5]";
 
 %Translation Method - Cartesian
@@ -110,9 +110,9 @@ smiData.RigidTransform(13).ID = "B[Hub-1:-:Fingertip-6]";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(14).translation = [0.78740157480314144 -4.1339875795982897 -6.1602071684488724];  % in
-smiData.RigidTransform(14).angle = 2.0943951023931957;  % rad
-smiData.RigidTransform(14).axis = [-0.57735026918962573 -0.57735026918962584 0.57735026918962573];
+smiData.RigidTransform(14).translation = [0.78740157480314732 -4.1339875795980223 -6.1602071684485287];  % in
+smiData.RigidTransform(14).angle = 2.094395102393197;  % rad
+smiData.RigidTransform(14).axis = [-0.5773502691896254 -0.57735026918962618 0.57735026918962573];
 smiData.RigidTransform(14).ID = "F[Hub-1:-:Fingertip-6]";
 
 %Translation Method - Cartesian
@@ -124,9 +124,9 @@ smiData.RigidTransform(15).ID = "B[Hub-1:-:Power_Screw-1]";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(16).translation = [1.6251968503937007 -2.2204460492503131e-16 -1.1102230246251565e-16];  % in
+smiData.RigidTransform(16).translation = [1.6251968503937009 0 0];  % in
 smiData.RigidTransform(16).angle = 2.0943951023931953;  % rad
-smiData.RigidTransform(16).axis = [-0.57735026918962595 -0.57735026918962584 0.57735026918962562];
+smiData.RigidTransform(16).axis = [-0.57735026918962584 -0.57735026918962584 0.57735026918962584];
 smiData.RigidTransform(16).ID = "F[Hub-1:-:Power_Screw-1]";
 
 %Translation Method - Cartesian
@@ -138,37 +138,37 @@ smiData.RigidTransform(17).ID = "B[Nut-1:-:Power_Screw-1]";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(18).translation = [-1.6785767693764351 4.4408920985006262e-16 2.2204460492503131e-16];  % in
+smiData.RigidTransform(18).translation = [-1.1892452769467705 -2.2204460492503131e-16 5.5511151231257827e-17];  % in
 smiData.RigidTransform(18).angle = 2.0943951023931953;  % rad
 smiData.RigidTransform(18).axis = [-0.57735026918962584 -0.57735026918962584 0.57735026918962584];
 smiData.RigidTransform(18).ID = "F[Nut-1:-:Power_Screw-1]";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(19).translation = [-0.92355383723872309 0.63542174333004509 0.29527559055118108];  % in
+smiData.RigidTransform(19).translation = [-0.9235538372387232 0.63542174333004509 0.2952755905511808];  % in
 smiData.RigidTransform(19).angle = 2.5935642459694748;  % rad
 smiData.RigidTransform(19).axis = [0.2810846377148235 0.67859834454584633 0.67859834454584633];
 smiData.RigidTransform(19).ID = "B[Nut-1:-:Connecting_Rod-1]";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(20).translation = [8.4238171993433753e-13 0.19685039370042462 -0.0068897637795275468];  % in
-smiData.RigidTransform(20).angle = 8.8769919512193162e-16;  % rad
-smiData.RigidTransform(20).axis = [-0.53327597654016046 -0.84594132943433975 2.0022951413944652e-16];
+smiData.RigidTransform(20).translation = [1.0075273948473296e-13 0.19685039370076673 -0.0068897637795278799];  % in
+smiData.RigidTransform(20).angle = 1.960888722144505e-15;  % rad
+smiData.RigidTransform(20).axis = [-0.62714653008000854 -0.77890129657653329 4.7893260434177229e-16];
 smiData.RigidTransform(20).ID = "F[Nut-1:-:Connecting_Rod-1]";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(21).translation = [-0.72381009097835958 -0.83516548959040648 0.29527559055118108];  % in
+smiData.RigidTransform(21).translation = [-0.7238100909783598 -0.83516548959040648 0.29527559055118108];  % in
 smiData.RigidTransform(21).angle = 1.7177715174584038;  % rad
 smiData.RigidTransform(21).axis = [-0.35740674433659519 -0.86285620946101516 -0.35740674433659514];
 smiData.RigidTransform(21).ID = "B[Nut-1:-:Connecting_Rod-2]";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(22).translation = [1.1369100105795837e-12 0.19685039370029778 0.11811023622047176];  % in
-smiData.RigidTransform(22).angle = 1.1102230246251565e-15;  % rad
-smiData.RigidTransform(22).axis = [-0.2909078026629181 -0.95675109111504697 1.5450216529024212e-16];
+smiData.RigidTransform(22).translation = [2.3414603589344551e-13 0.1968503937007392 0.11811023622047206];  % in
+smiData.RigidTransform(22).angle = 8.7110068194702445e-16;  % rad
+smiData.RigidTransform(22).axis = [0.80131204512672138 -0.59824660996518075 -2.0879508699140136e-16];
 smiData.RigidTransform(22).ID = "F[Nut-1:-:Connecting_Rod-2]";
 
 %Translation Method - Cartesian
@@ -180,9 +180,9 @@ smiData.RigidTransform(23).ID = "B[Nut-1:-:Connecting_Rod-3]";
 
 %Translation Method - Cartesian
 %Rotation Method - Arbitrary Axis
-smiData.RigidTransform(24).translation = [3.5860203695392556e-14 0.19685039370077212 0.11811023622047268];  % in
-smiData.RigidTransform(24).angle = 2.809230721256729e-16;  % rad
-smiData.RigidTransform(24).axis = [-0.088630575845578471 -0.99606456669499155 1.2400193880950715e-17];
+smiData.RigidTransform(24).translation = [2.3453461395206432e-14 0.19685039370078253 0.11811023622047262];  % in
+smiData.RigidTransform(24).angle = 2.8092307212567281e-16;  % rad
+smiData.RigidTransform(24).axis = [0.0036619985573647543 -0.99999329486080357 -5.143664935052818e-19];
 smiData.RigidTransform(24).ID = "F[Nut-1:-:Connecting_Rod-3]";
 
 
@@ -261,7 +261,7 @@ smiData.CylindricalJoint(1).Pz.Pos = 0.0;
 smiData.CylindricalJoint(1).ID = "";
 
 %This joint has been chosen as a cut joint. Simscape Multibody treats cut joints as algebraic constraints to solve closed kinematic loops. The imported model does not use the state target data for this joint.
-smiData.CylindricalJoint(1).Rz.Pos = -138.11969119706859;  % deg
+smiData.CylindricalJoint(1).Rz.Pos = -123.67016665557605;  % deg
 smiData.CylindricalJoint(1).Pz.Pos = 0;  % in
 smiData.CylindricalJoint(1).ID = "[Nut-1:-:Power_Screw-1]";
 
@@ -270,35 +270,35 @@ smiData.CylindricalJoint(1).ID = "[Nut-1:-:Power_Screw-1]";
 smiData.RevoluteJoint(10).Rz.Pos = 0.0;
 smiData.RevoluteJoint(10).ID = "";
 
-smiData.RevoluteJoint(1).Rz.Pos = 69.445524864400738;  % deg
+smiData.RevoluteJoint(1).Rz.Pos = 51.051825440100579;  % deg
 smiData.RevoluteJoint(1).ID = "[Connecting_Rod-2:-:Fingertip-4]";
 
-smiData.RevoluteJoint(2).Rz.Pos = 69.445524864392482;  % deg
+smiData.RevoluteJoint(2).Rz.Pos = 51.051825440098817;  % deg
 smiData.RevoluteJoint(2).ID = "[Connecting_Rod-3:-:Fingertip-5]";
 
-smiData.RevoluteJoint(3).Rz.Pos = 69.44552486439845;  % deg
+smiData.RevoluteJoint(3).Rz.Pos = 51.051825440099641;  % deg
 smiData.RevoluteJoint(3).ID = "[Connecting_Rod-1:-:Fingertip-6]";
 
-smiData.RevoluteJoint(4).Rz.Pos = 160.63930515549325;  % deg
+smiData.RevoluteJoint(4).Rz.Pos = 173.7383570290213;  % deg
 smiData.RevoluteJoint(4).ID = "[Hub-1:-:Fingertip-4]";
 
-smiData.RevoluteJoint(5).Rz.Pos = -19.360694844470384;  % deg
+smiData.RevoluteJoint(5).Rz.Pos = -6.2616429709709491;  % deg
 smiData.RevoluteJoint(5).ID = "[Hub-1:-:Fingertip-5]";
 
-smiData.RevoluteJoint(6).Rz.Pos = -109.36069484449698;  % deg
+smiData.RevoluteJoint(6).Rz.Pos = -96.261642970973966;  % deg
 smiData.RevoluteJoint(6).ID = "[Hub-1:-:Fingertip-6]";
 
-smiData.RevoluteJoint(7).Rz.Pos = 131.88030880293141;  % deg
+smiData.RevoluteJoint(7).Rz.Pos = 146.32983334442395;  % deg
 smiData.RevoluteJoint(7).ID = "[Hub-1:-:Power_Screw-1]";
 
 %This joint has been chosen as a cut joint. Simscape Multibody treats cut joints as algebraic constraints to solve closed kinematic loops. The imported model does not use the state target data for this joint.
-smiData.RevoluteJoint(8).Rz.Pos = 50.084830019901474;  % deg
+smiData.RevoluteJoint(8).Rz.Pos = 44.790182469125646;  % deg
 smiData.RevoluteJoint(8).ID = "[Nut-1:-:Connecting_Rod-1]";
 
-smiData.RevoluteJoint(9).Rz.Pos = -39.915169980105986;  % deg
+smiData.RevoluteJoint(9).Rz.Pos = -45.209817530878119;  % deg
 smiData.RevoluteJoint(9).ID = "[Nut-1:-:Connecting_Rod-2]";
 
 %This joint has been chosen as a cut joint. Simscape Multibody treats cut joints as algebraic constraints to solve closed kinematic loops. The imported model does not use the state target data for this joint.
-smiData.RevoluteJoint(10).Rz.Pos = -39.915169980077899;  % deg
+smiData.RevoluteJoint(10).Rz.Pos = -45.209817530872122;  % deg
 smiData.RevoluteJoint(10).ID = "[Nut-1:-:Connecting_Rod-3]";
 
