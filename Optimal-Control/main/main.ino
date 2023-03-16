@@ -1,4 +1,3 @@
-#include <TimerOne.h>
 #include <HCSR04.h>
 
 #define PLDCOMM 10
@@ -6,13 +5,14 @@
 #define IN1PIN 11
 #define IN2PIN 12
 #define LEDPIN 19
+#define LEDCHANNEL 0
 #define SENSOR1PIN 
 #define SENSOR2PIN 5
 
-#define TENPERC 102
-#define FORTYPERC 409
-#define ONEHUNPERC 1023
-#define SEVENTYPERC 716
+#define TENPERC 6554
+#define FORTYPERC 26214
+#define ONEHUNPERC 65536
+#define SEVENTYPERC 45876
 
 /* global variable declaration */
 int pulse = 0b0;
@@ -28,28 +28,30 @@ void setup()
   pinMode(MOTORPIN, OUTPUT);
   pinMode(IN1PIN, OUTPUT);
   pinMode(IN2PIN, OUTPUT);
-  pinMode(LEDPIN, OUTPUT);
   pinMode(SENSOR2PIN,INPUT);
 
   //LED states
-  Timer1.initialize(1000000);
-  Timer1.pwm(LEDPIN, SEVENTYPERC);
+  ledcAttachPin(LEDPIN, LEDCHANNEL);
+  ledcSetup(LEDCHANNEL, 1, 16);
 
   // attachInterrupt(digitalPinToInterrupt(SENSOR1PIN,closeClaw, RISING);
-  attachInterrupt(digitalPinToInterrupt(SENSOR2PIN), openClaw, RISING);
+//  attachInterrupt(digitalPinToInterrupt(SENSOR2PIN), openClaw, RISING);
+  
 }
 
 void loop()
 {
+  ledcWrite(LEDCHANNEL, SEVENTYPERC);
   // Next state: Close claw
   if (distanceSensor.measureDistanceCm() <= 10 && home) {
-    Timer1.setPwmDuty(LEDPIN, TENPERC);
     closeClaw();
   } 
 }
 
 void closeClaw()
 {
+  ledcWrite(LEDCHANNEL, TENPERC);
+  
   int pulsetemp = 0b0;
 
   for (int i = 0; i < PLDCOMM; i++)
@@ -62,6 +64,7 @@ void closeClaw()
 
   // PIN D10-D13
   digitalWrite(MOTORPIN, HIGH);
+
 
   // Motor spin forward
   digitalWrite(IN1PIN, HIGH);
@@ -79,7 +82,7 @@ void PID() {
 
 void travelClaw()
 {
-  Timer1.setPwmDuty(LEDPIN, FORTYPERC);
+  ledcWrite(LEDCHANNEL, FORTYPERC);
   // Motor stop spin
   digitalWrite(IN1PIN, LOW);
   digitalWrite(IN2PIN, LOW);
@@ -91,7 +94,7 @@ void travelClaw()
 void openClaw()
 {
   // ISR sense
-  Timer1.setPwmDuty(LEDPIN, ONEHUNPERC);
+  ledcWrite(LEDCHANNEL, ONEHUNPERC);
 
   // PIN D10-D13
   digitalWrite(MOTORPIN, HIGH);
