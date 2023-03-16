@@ -4,10 +4,11 @@
 #define MOTORPIN 10
 #define IN1PIN 11
 #define IN2PIN 12
-#define LEDPIN 19
+#define LEDPIN 32
 #define LEDCHANNEL 0
-#define SENSOR1PIN 
-#define SENSOR2PIN 5
+#define SENSOR2PIN 33
+#define ECHOPIN 26
+#define TRIGGERPIN 27
 
 #define TENPERC 6554
 #define FORTYPERC 26214
@@ -17,7 +18,7 @@
 /* global variable declaration */
 int pulse = 0b0;
 bool home = true;
-
+hw_timer_t* pidTimer = NULL;
 UltraSonicDistanceSensor distanceSensor(3, 4); //Initialize sensor
 
 void setup()
@@ -30,64 +31,69 @@ void setup()
   pinMode(IN2PIN, OUTPUT);
   pinMode(SENSOR2PIN,INPUT);
 
-  //LED states
+  //LED states at 1Hz PWM and 16 bit resolution at channel 0
   ledcAttachPin(LEDPIN, LEDCHANNEL);
   ledcSetup(LEDCHANNEL, 1, 16);
 
-  // attachInterrupt(digitalPinToInterrupt(SENSOR1PIN,closeClaw, RISING);
-//  attachInterrupt(digitalPinToInterrupt(SENSOR2PIN), openClaw, RISING);
-  
+  //ISRs
+  //This lets timer1 frequency 80MHz/80kHz=1Khz
+  hw_timer_t* pidTimer = timerBegin(2, 80000, true);
+  timerAttachInterrupt(pidTimer, &PID, true);
+  //Every 500ms PID will run
+  timerAlarmWrite(pidTimer, 500 ,true);
+  timerAlarmEnable(pidTimer);
+
+  attachInterrupt(digitalPinToInterrupt(SENSOR2PIN), openClaw, RISING);
 }
 
 void loop()
 {
   ledcWrite(LEDCHANNEL, SEVENTYPERC);
-  // Next state: Close claw
-  if (distanceSensor.measureDistanceCm() <= 10 && home) {
+  float distance = distanceSensor.measureDistanceCm();
+  
+  if (distance <= 15.0 && distance >= 0&& home) {
     closeClaw();
-  } 
+  }
 }
 
 void closeClaw()
 {
   ledcWrite(LEDCHANNEL, TENPERC);
-  
-  int pulsetemp = 0b0;
-
-  for (int i = 0; i < PLDCOMM; i++)
-  {
-    // PIN D0 - D9 (D0-D9)
-    pulsetemp = pulsetemp << 1 | int(digitalRead(i));
-  }
-
-  //compare pulsetemp with pulse
 
   // PIN D10-D13
   digitalWrite(MOTORPIN, HIGH);
-
 
   // Motor spin forward
   digitalWrite(IN1PIN, HIGH);
   digitalWrite(IN2PIN, LOW);
 
-  PID();
+  home = false;
 
   // Next state: Travel Claw
   travelClaw();
 }
 
 void PID() {
-  //TBD
+  if !home {
+    int pulsetemp = 0b0;
+
+    for (int i = 0; i < PLDCOMM; i++)
+    {
+      // PIN D0 - D9 (D0-D9)
+      pulsetemp = pulsetemp << 1 | int(digitalRead(i));
+    }
+    // Calculate error, return difference 
+  }
 }
 
 void travelClaw()
 {
+  home = true;
   ledcWrite(LEDCHANNEL, FORTYPERC);
+  
   // Motor stop spin
   digitalWrite(IN1PIN, LOW);
   digitalWrite(IN2PIN, LOW);
-
-  home = true;
 }
 
 // Last state (ISR): 
@@ -99,21 +105,14 @@ void openClaw()
   // PIN D10-D13
   digitalWrite(MOTORPIN, HIGH);
 
+  home == false;
+
   // Motor spin forward
+  // Do this until a certain point
   digitalWrite(IN1PIN, LOW);
   digitalWrite(IN2PIN, HIGH);
-
-
-  //Do this until certain point reached
-  // while pulsetemp != pulse {
-  //   for (int i = 0; i < PLDCOMM; i++)
-  //   {
-  //     // PIN D0 - D9 (D0-D9)
-  //     pulsetemp = pulsetemp << 1 | int(digitalRead(i));
-  //   }
-  // }
-
+ 
+  // End
   digitalWrite(IN1PIN, LOW);
   digitalWrite(IN2PIN, LOW);
-  home == false; // returns home
 }
