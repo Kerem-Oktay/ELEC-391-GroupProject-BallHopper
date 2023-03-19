@@ -1,0 +1,8 @@
+Comment,Description,Designator,Quantity,Man. Part Number
+
+"100nF","CAP CER 0.1UF 50V 10% RADIAL","C1, C2","2",""
+"JST 5P-XH-V","Connector Header, XH Series, 5 Position, 2.50mm, Through Hole, Press-Fit, Solder, Natural","CN1, CN2","2",""
+"1N4005-T","1.0 A Rectifier, 8 pF, 600 V, -65 to 150 degC, 2-Pin DO-41 Plastic, RoHS, Tape and Reel","D1, D2, D3, D4","4",""
+"JST B2B-XH-A","Conn Shrouded Header HDR 2 POS 2.5mm Solder ST Thru-Hole Box","J1","1",""
+"Molex 22-28-4060","KK® 254 Breakaway Header, Vertical, 6 Circuits, Tin (Sn) Plating, Mating Pin Length 6.09mm","J2","1",""
+"STMicroelectronics L298HN","PMIC - gate/half-bridge gate drivers STMicroelectronics L298HN Inductive Bipolar Multiwatt 15","U1","1",""
