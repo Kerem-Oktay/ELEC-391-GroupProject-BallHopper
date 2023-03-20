@@ -15,3 +15,6 @@ ELEC 391 - Electrical Engineering Design Studio II (January - March 2023)
 ### Digital
 - Missed Pulses Test: https://drive.google.com/file/d/1QNyGvOfNERpase1NgM-POGZV6O9L-rX4/view?usp=sharing
 - Both Directions Counting: https://drive.google.com/file/d/1wTb4RRv8bWMMX-Ec8G-Ff5oxxHRGX3V3/view?usp=sharing
+
+### System Identification
+- Gripper Mechanismm Simulation on MATLAB/Simulink: https://drive.google.com/drive/folders/1JD9nbEjx4Q1AWdH3Mn-C0eqIqGHE8A6V?usp=sharing
