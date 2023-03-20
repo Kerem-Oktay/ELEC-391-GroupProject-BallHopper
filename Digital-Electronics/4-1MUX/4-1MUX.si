@@ -1,0 +1,25 @@
+Name     4-1MUX;
+PartNo   00;
+Date     17-Mar-23;
+Revision 01;
+Designer Engineer;
+Company  The University of British Columbia;
+Assembly None;
+Location ;
+Device   g16v8;
+
+
+ORDER: S1, S2, D0, D1, D2, D3, Q0; 
+
+
+VECTORS:
+000101*
+100110*
+011011*
+111100*
+001111*
+100000*
+010010*
+111110*
+000001*
+100101*

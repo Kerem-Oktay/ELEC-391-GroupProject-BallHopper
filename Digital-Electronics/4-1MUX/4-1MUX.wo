@@ -1,0 +1,25 @@
+#WAVEFORM
+#H Name     4-1MUX;
+#H PartNo   00;
+#H Date     17-Mar-23;
+#H Revision 01;
+#H Designer Engineer;
+#H Company  The University of British Columbia;
+#H Assembly None;
+#H Location ;
+#H Device   g16v8;
+#H 
+#H 
+#H ORDER: S1, S2, D0, D1, D2, D3, Q0; 
+#H 
+#H 
+#V 0001 000101L
+#V 0002 100110H
+#V 0003 011011H
+#V 0004 111100L
+#V 0005 001111H
+#V 0006 100000L
+#V 0007 010010H
+#V 0008 111110L
+#V 0009 000001L
+#V 0010 100101H

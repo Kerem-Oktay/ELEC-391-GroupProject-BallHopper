@@ -1,0 +1,25 @@
+# Berkeley PLA format generated using
+#
+# CUPL(WM)        5.0a Serial# 60008009
+# Device          g16v8s  Library DLIB-h-40-9
+# Created         Fri Mar 17 18:58:58 2023
+# Name            4-1MUX 
+# Partno          00 
+# Revision        01 
+# Date            17-Mar-23 
+# Designer        Engineer 
+# Company         The University of British Columbia 
+# Assembly        None 
+# Location        
+#
+# Inputs  D0 D1 D2 D3 
+#         Q0 S1 S2 
+# Outputs Q0 
+.i 7
+.o 1
+.p 4
+1----00 1
+-1---10 1
+--1--01 1
+---1-11 1
+.end

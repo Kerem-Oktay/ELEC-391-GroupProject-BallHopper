@@ -1,0 +1,27 @@
+Name     4-1MUX ;
+PartNo   00 ;
+Date     17-Mar-23 ;
+Revision 01 ;
+Designer Engineer ;
+Company  The University of British Columbia ;
+Assembly None ;
+Location  ;
+Device   g16v8 ;
+
+/* *************** INPUT PINS *********************/
+PIN 2 = D0; /*                                 */ 
+PIN 3 = D1; /*                                 */ 
+PIN 4 = D2; /*                                 */ 
+PIN 5 = D3; /*                                 */ 
+PIN 6 = S1; /*                                 */ 
+PIN 7 = S2; /*                                 */ 
+
+/* *************** OUTPUT PINS *********************/
+PIN 19 = Q0; /*                                 */ 
+
+/* *************** LOGIC *********************/
+Q0 = (D0 & !S1 & !S2) # (D1 & S1 & !S2) # (D2 & !S1 & S2) # (D3 & S1 & S2);
+
+
+
+
