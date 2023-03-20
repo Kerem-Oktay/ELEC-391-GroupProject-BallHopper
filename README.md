@@ -6,3 +6,12 @@ ELEC 391 - Electrical Engineering Design Studio II (January - March 2023)
 - Digital Electronics: [Kerem Oktay](https://github.com/Kerem-Oktay)
 - Optimal Control: [Phi Lam](https://github.com/philam2001)
 - System Identification: [Jaydon Alexis](https://github.com/jaydonalexis)
+
+## Proof of Concept Videos
+### Analog
+- Homing Circuit: https://drive.google.com/file/d/1XPwnbltA7bYrDxhqjHbavb2MQuFamWF6/view?usp=sharing
+- Motor Driver Response to PWM Signals: https://drive.google.com/file/d/1h0WLaYGfkV7tp02XX7nt_eYF0rJrJksn/view?usp=sharing
+
+### Digital
+- Missed Pulses Test: https://drive.google.com/file/d/1QNyGvOfNERpase1NgM-POGZV6O9L-rX4/view?usp=sharing
+- Both Directions Counting: https://drive.google.com/file/d/1wTb4RRv8bWMMX-Ec8G-Ff5oxxHRGX3V3/view?usp=sharing
