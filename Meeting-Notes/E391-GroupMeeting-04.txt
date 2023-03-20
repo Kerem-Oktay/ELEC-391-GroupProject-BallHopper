@@ -15,15 +15,15 @@ RCG:
             - R: Trace width large enough to support 5A current
             - C: Trace width has to allow us to fit all the components on the board
             - G: Minimize trace width
-        - Motor Current Trace
+        - Motor driver power consumption
             - R: Motor current trace has to be 0.5 inches away from encoder feedback trace
             - C: It can't be closer than x inches 
             - G: As close as possible to minmize board area
-        - 
+        - sensor/homing
             - R: 
             - C: 
             - G:             
-        - 
+        - motor driver response time
             - R: 
             - C: 
             - G: 
@@ -41,11 +41,11 @@ RCG:
             - R: For every 100 pulses number of missed pulses must be less than 5 
             - C: IC needs to oprate at 33 mHz, pulses shouldn't be faster than 33mHz
             - G: Minimize missed pulses
-        - 
+        - Both ways counting
             - R: 
             - C: 
             - G:             
-        - 
+        - bit/wiring optimize
             - R: 
             - C: 
             - G: 
