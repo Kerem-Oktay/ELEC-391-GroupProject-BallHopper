@@ -1,0 +1,16 @@
+[StartTime]
+Connecting_Rod-Tension.MFC=12s
+[SolverState]
+Connecting_Rod-Tension.MFC=2
+[MainFrame]
+Connecting_Rod-Tension.MFC=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPMECAAAAAHEBAAAAAELDAAAAAKBCAAAAA
+[ShowMin]
+Connecting_Rod-Tension.MFC=No
+[SolverType]
+Connecting_Rod-Tension.MFC=Linear Analysis
+[StudyType]
+Connecting_Rod-Tension.MFC=0
+[StudyName]
+Connecting_Rod-Tension.MFC=Tension
+[Solver]
+Connecting_Rod-Tension.MFC=Iterative

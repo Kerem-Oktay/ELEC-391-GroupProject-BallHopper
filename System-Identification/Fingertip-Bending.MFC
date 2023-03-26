@@ -1,0 +1,16 @@
+[StartTime]
+Fingertip-Bending.MFC=1s
+[SolverState]
+Fingertip-Bending.MFC=2
+[MainFrame]
+Fingertip-Bending.MFC=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPMECAAAAAHEBAAAAAELDAAAAAKBCAAAAA
+[ShowMin]
+Fingertip-Bending.MFC=No
+[SolverType]
+Fingertip-Bending.MFC=Linear Analysis
+[StudyType]
+Fingertip-Bending.MFC=0
+[StudyName]
+Fingertip-Bending.MFC=Bending
+[Solver]
+Fingertip-Bending.MFC=Iterative
