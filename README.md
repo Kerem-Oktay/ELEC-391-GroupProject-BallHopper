@@ -1,4 +1,4 @@
-# Ball Hopper: Claw Project
+# Ball Hopper: Gripper Robot
 ELEC 391 - Electrical Engineering Design Studio II (January - March 2023)
 
 ### Team Members
