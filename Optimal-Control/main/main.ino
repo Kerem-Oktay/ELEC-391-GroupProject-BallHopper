@@ -11,16 +11,16 @@
 #define PRESETPOINT 8544
 
 /* PINS */
-#define MOTORPIN 10
-#define IN1PIN 11
+#define MOTORPIN 14
+#define IN1PIN 27
 #define IN2PIN 12
-#define IN1CHANNEL 1
-#define IN2CHANNEL 2
-#define LEDPIN 32
+#define IN1CHANNEL 6
+#define IN2CHANNEL 9
+#define LEDPIN 21
 #define LEDCHANNEL 0
 #define SENSOR2PIN 33
-#define ECHOPIN 26
-#define TRIGGERPIN 27
+#define ECHOPIN 19
+#define TRIGGERPIN 18
 
 /* LED DUTY CYCLES */
 #define TENPERC 6554
