@@ -11,14 +11,14 @@
 #define PRESETPOINT 8544
 
 /* PINS */
-#define MOTORPIN 14
-#define IN1PIN 27
+#define MOTORPIN 15
+#define IN1PIN 4
 #define IN2PIN 12
 #define IN1CHANNEL 6
 #define IN2CHANNEL 9
 #define LEDPIN 21
 #define LEDCHANNEL 0
-#define SENSOR2PIN 33
+#define SENSOR2PIN 5
 #define ECHOPIN 19
 #define TRIGGERPIN 18
 
@@ -27,6 +27,24 @@
 #define FORTYPERC 26214
 #define ONEHUNPERC 65536
 #define SEVENTYPERC 45876
+
+/* CONTROL SIGNALS */
+#define RSTN 26
+#define OEN 25
+#define SEL1 27
+#define SEL2 14
+#define S1  32
+#define S2  33
+
+/* COUNTER SIGNALS */
+#define BIT0 35
+#define BIT1 34 
+
+volatile long count = 0;
+
+/*
+  The algorithm below is based on the Example Routine given in the IC datasheet
+*/
 
 /* GLOBAL VARIABLE DECLARATION */
 double setPosition;
@@ -46,9 +64,20 @@ void setup()
 {
   Serial.begin(9600);
 
+  // Assign Output Pins
+  pinMode(RSTN,OUTPUT);
+  pinMode(OEN,OUTPUT);
+  pinMode(SEL1,OUTPUT);
+  pinMode(SEL2,OUTPUT);
+  pinMode(S1,OUTPUT);
+  pinMode(S2,OUTPUT);
   pinMode(MOTORPIN, OUTPUT);
   pinMode(IN1PIN, OUTPUT);
   pinMode(IN2PIN, OUTPUT);
+
+  // Assign Input Pins
+  pinMode(BIT0,INPUT);
+  pinMode(BIT1,INPUT);
   pinMode(SENSOR2PIN, INPUT);
 
   // LED states at 1Hz PWM and 16 bit resolution at channel 0
@@ -61,6 +90,19 @@ void setup()
   ledcAttachPin(IN2PIN, IN2CHANNEL);
   ledcSetup(IN2CHANNEL, MOTORFREQ, 8);
 
+  // Initial Decoder Reset
+  digitalWrite(RSTN,LOW);
+  delay(15);
+  digitalWrite(RSTN,HIGH);
+
+  // Initial Control Signals
+  digitalWrite(OEN,LOW);
+  digitalWrite(SEL1,LOW);
+  digitalWrite(SEL2,LOW);
+  digitalWrite(S1,LOW);
+  digitalWrite(S2,LOW);
+
+
   // ISRs
   pidTimer = timerBegin(2, 1, true); // pidTimer number 2, divider = 1 bc no prescalar needed
   timerAttachInterrupt(pidTimer, &PID, true);
@@ -68,11 +110,13 @@ void setup()
   motorPID.SetMode(AUTOMATIC);
 
   attachInterrupt(digitalPinToInterrupt(SENSOR2PIN), openClaw, RISING);
+
 }
 
 void loop()
 {
   ledcWrite(LEDCHANNEL, SEVENTYPERC);
+
   digitalWrite(MOTORPIN, LOW);
   float distance = distanceSensor.measureDistanceCm();
 
@@ -92,9 +136,10 @@ void closeClaw()
   setPosition = 8544;
   flag = true;
 
-  // Initialize motor pin without PWM
+  // Initialize motor pin without PID
   digitalWrite(MOTORPIN, HIGH);
-  ledcWrite(IN2PIN, 0);
+  ledcWrite(IN2CHANNEL, 0);
+  ledcWrite(IN1CHANNEL, 255);
 
   // Start PID
   home = false;
@@ -111,45 +156,38 @@ void PID()
 {
   if (!home)
   {
-    int pulseTemp = 0b0;
-    bool pin;
+    int pin;
+    int pin2;
 
-    for (int i = 0; i < PLDCOMM; i++)
-    {
-      // PIN D0 - D9 (D0-D9)
-      pulseTemp = pulseTemp << 1 | int(digitalRead(i));
-    }
+    // read encoder pulse 
+    digitalWrite(OEN, HIGH); // Disable OE
+    getPulseCount();
 
-    Serial.print("Current pulse, prev pulse, overall pulse, max pulse: ");
-    Serial.println(pulseTemp);
-    Serial.println(pulseOverflow);
+    Serial.print("Current pulse, prev pulse, max pulse: ");
+    Serial.println(count);
     Serial.println(pulse);
-    Serial.println(MAXPULSE);
+//    Serial.println(MAXPULSE);
 
-    // Motor running backwards
-    //  case that pulse count overflows backwards from 200 -> 15950
-    //  or motor goes backward 800 -> 400, chose 1000 as buffer as
-    //  pulses should not be greater than that with PID ISR
-    if ((pulseTemp)*0.5 > pulseOverflow || (pulseOverflow - pulseTemp < 1000 && pulseOverflow - pulseTemp > 0))
-    {
-      pulse = pulse - (MAXPULSE + pulseOverflow - pulseTemp);
-      pin = IN2PIN;
-      Serial.print("Motor running backwards");
-    }
-    else
-    {
-      // Motor running forwards
-      //  case if pulse is regularly larger or is less than prev pulse
-      pulse = pulse + (pulseTemp - pulseOverflow);
-      pin = IN1PIN;
-      Serial.print("Motor running forwards");
+    // Motor running forwards
+    if (count > pulse) {
+      pin = IN1CHANNEL;
+      pin2 = IN2CHANNEL;
+      Serial.println("Motor running forwards");
+    } else {
+      // Motor running backwards
+      pin = IN2CHANNEL;
+      pin2 = IN1CHANNEL;
+      Serial.println("Motor running backwards");
     }
 
-    pulseOverflow = pulseTemp;
-    input = pulse;
+    input = count;
+
+    pulse = count;
     motorPID.Compute();
 
+    // slow down motor
     ledcWrite(pin, 255 * abs((setPosition - output) / PRESETPOINT));
+    ledcWrite(pin2, 0);
 
     Serial.print("New overall pulse, PID output: ");
     Serial.println(pulse);
@@ -157,7 +195,7 @@ void PID()
 
     // PID settles close enough
     if (output <= setPosition + 1 && output >= setPosition - 1)
-    {
+    { 
       timerAlarmDisable(pidTimer);
 
       if (flag)
@@ -166,7 +204,8 @@ void PID()
       }
       else
       {
-        openClaw();
+        Serial.println("Entering home state");
+        return;
       }
     }
   }
@@ -179,8 +218,8 @@ void travelClaw()
   ledcWrite(LEDCHANNEL, FORTYPERC);
 
   // Motor stop spin, sanity check
-  ledcWrite(IN1PIN, 0);
-  ledcWrite(IN2PIN, 0);
+  ledcWrite(IN1CHANNEL, 0);
+  ledcWrite(IN2CHANNEL, 0);
 
   // Should not get to this case, but goes to next state if
   // it doesn't see sensor for > 30s
@@ -199,7 +238,9 @@ void openClaw()
   setPosition = 0;
   flag = false;
 
-  ledcWrite(IN1PIN, 0);
+  // Initialize movement
+  ledcWrite(IN1CHANNEL, 0);
+  ledcWrite(IN2CHANNEL, 255);
 
   // Start PID
   home = false;
@@ -210,4 +251,112 @@ void openClaw()
 
   // Next state: Home
   home = true;
+}
+
+/* PLD encoder code*/
+byte getByte()
+{
+byte capture1 = 0; // Initialize a byte variable to read the first capture
+for(int i=0; i<4; i++){
+
+  switch(i){
+    case 0:
+      digitalWrite(S1,LOW);
+      digitalWrite(S2,LOW);
+      break;
+    case 1:
+      digitalWrite(S1,HIGH);
+      digitalWrite(S2,LOW);
+      break;
+    case 2:
+      digitalWrite(S1,LOW);
+      digitalWrite(S2,HIGH);
+      break;
+    case 3:
+      digitalWrite(S1,HIGH);
+      digitalWrite(S2,HIGH);
+      break; 
+    default:
+      digitalWrite(S1,LOW);
+      digitalWrite(S2,LOW);
+      break;
+  }
+
+  capture1 |= (digitalRead(BIT0)<<i);
+  capture1 |= (digitalRead(BIT1)<<(i+4));
+}
+
+byte capture2 = 0; // Initialize a byte variable to read the second capture
+for(int i=0; i<4; i++){
+
+  switch(i){
+    case 0:
+      digitalWrite(S1,LOW);
+      digitalWrite(S2,LOW);
+      break;
+    case 1:
+      digitalWrite(S1,HIGH);
+      digitalWrite(S2,LOW);
+      break;
+    case 2:
+      digitalWrite(S1,LOW);
+      digitalWrite(S2,HIGH);
+      break;
+    case 3:
+      digitalWrite(S1,HIGH);
+      digitalWrite(S2,HIGH);
+      break; 
+    default:
+      digitalWrite(S1,LOW);
+      digitalWrite(S2,LOW);
+      break;
+  }
+
+  capture2 |= (digitalRead(BIT0)<<i);
+  capture2 |= (digitalRead(BIT1)<<(i+4));
+}
+
+if (capture2 == capture1){  // If the first and second capture match then return the result
+  byte byteCapture = capture2;
+  return byteCapture;  
+}
+else getByte(); // If the first and second capture DO NOT match, try again to capture 
+}
+
+long combine4Bytes(byte byte4, byte byte3, byte byte2, byte byte1)
+{
+  long combine = 0;
+  combine |= (((long)byte4 << 24) | ((long)byte3 << 16) | ((long)byte2 << 8) | ((long)byte1 << 0));
+  return combine;
+}
+
+void getPulseCount()
+{
+  delay(25);
+  digitalWrite(OEN, HIGH); // Disable OE
+  digitalWrite(OEN, LOW); // Enable OE
+
+  // SEL1 = 0 and SEL2 = 1 gets 4th Byte
+  digitalWrite(SEL1, LOW);
+  digitalWrite(SEL2, HIGH); 
+  byte Byte4 = getByte();
+
+  // SEL1 = 1 and SEL2 = 1 gets 3rd Byte
+  digitalWrite(SEL1, HIGH);
+  digitalWrite(SEL2, HIGH); 
+  byte Byte3 = getByte();
+  
+  // SEL1 = 0 and SEL2 = 0 gets 2nd Byte
+  digitalWrite(SEL1, LOW);
+  digitalWrite(SEL2, LOW); 
+  byte Byte2 = getByte();
+  
+  // SEL1 = 1 and SEL2 = 0 gets 1st Byte
+  digitalWrite(SEL1, HIGH);
+  digitalWrite(SEL2, LOW); 
+  byte Byte1 = getByte();
+
+  digitalWrite(OEN, HIGH); // disable OE
+  delay(25);
+  count = combine4Bytes(Byte4,Byte3,Byte2,Byte1);
 }
