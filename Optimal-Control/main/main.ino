@@ -4,7 +4,6 @@
 #include <HCSR04.h>
 
 /* MISC CONSTANTS */
-#define PLDCOMM 10
 #define MAXPULSE 16383 // 14-bit
 #define MOTORFREQ 30000
 #define LEDFREQ 1
@@ -53,6 +52,7 @@ double Kp = 0.5, Ki = 0.1, Kd = 0.5;
 int pulse = 0;
 int pulseOverflow = 0;
 bool home = true;
+bool homeState = true;
 bool flag = false;
 
 /* INITIALIZE PID TIMER, MOTOR PID MODEL, AND SENSOR */
@@ -109,23 +109,26 @@ void setup()
   timerAlarmWrite(pidTimer, 80000, true); // Every 1Khz PID will run 80MHz/80000 = 1Khz
   motorPID.SetMode(AUTOMATIC);
 
-  attachInterrupt(digitalPinToInterrupt(SENSOR2PIN), openClaw, RISING);
-
+  attachInterrupt(digitalPinToInterrupt(SENSOR2PIN), openClawISR, RISING);
 }
 
 void loop()
 {
-  ledcWrite(LEDCHANNEL, SEVENTYPERC);
-
-  digitalWrite(MOTORPIN, LOW);
-  float distance = distanceSensor.measureDistanceCm();
-
-  Serial.print("Distance from object: ");
-  Serial.println(distance);
-
-  if (distance <= 15.0 && distance >= 0 && home)
-  {
-    closeClaw();
+  if (homeState){
+    ledcWrite(LEDCHANNEL, SEVENTYPERC);
+  
+    digitalWrite(MOTORPIN, LOW);
+    float distance = distanceSensor.measureDistanceCm();
+  
+    Serial.print("Distance from object: ");
+    Serial.println(distance);
+  
+    if (distance <= 15.0 && distance >= 0 && home)
+    {
+      closeClaw();
+    }
+  } else {
+    openClaw();
   }
 }
 
@@ -138,8 +141,6 @@ void closeClaw()
 
   // Initialize motor pin without PID
   digitalWrite(MOTORPIN, HIGH);
-  ledcWrite(IN2CHANNEL, 0);
-  ledcWrite(IN1CHANNEL, 255);
 
   // Start PID
   home = false;
@@ -169,7 +170,7 @@ void PID()
 //    Serial.println(MAXPULSE);
 
     // Motor running forwards
-    if (count > pulse) {
+    if (setPosition > count) {
       pin = IN1CHANNEL;
       pin2 = IN2CHANNEL;
       Serial.println("Motor running forwards");
@@ -180,21 +181,21 @@ void PID()
       Serial.println("Motor running backwards");
     }
 
-    input = count;
+    input = abs(setPosition-count);
 
     pulse = count;
     motorPID.Compute();
 
     // slow down motor
-    ledcWrite(pin, 255 * abs((setPosition - output) / PRESETPOINT));
+    ledcWrite(pin, output);
     ledcWrite(pin2, 0);
 
-    Serial.print("New overall pulse, PID output: ");
+    Serial.println("New overall pulse, PID output: ");
     Serial.println(pulse);
     Serial.println(output);
 
     // PID settles close enough
-    if (output <= setPosition + 1 && output >= setPosition - 1)
+    if (output == 0)
     { 
       timerAlarmDisable(pidTimer);
 
@@ -205,6 +206,7 @@ void PID()
       else
       {
         Serial.println("Entering home state");
+        homeState = true;
         return;
       }
     }
@@ -226,7 +228,12 @@ void travelClaw()
   delay(30000);
 
   // Next state: openClaw()
-  openClaw();
+//  openClaw();
+  return;
+}
+
+void openClawISR() {
+  homeState = false;
 }
 
 // Last state (ISR):
@@ -238,10 +245,6 @@ void openClaw()
   setPosition = 0;
   flag = false;
 
-  // Initialize movement
-  ledcWrite(IN1CHANNEL, 0);
-  ledcWrite(IN2CHANNEL, 255);
-
   // Start PID
   home = false;
   timerAlarmEnable(pidTimer);
@@ -250,6 +253,7 @@ void openClaw()
   delay(30000);
 
   // Next state: Home
+  homeState = true;
   home = true;
 }
 
