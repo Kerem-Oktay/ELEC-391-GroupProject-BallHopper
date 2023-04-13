@@ -1,10 +1,8 @@
 
 /* IMPORTED LIBRARIES */
-#include <PID_v1.h>
 #include <HCSR04.h>
 
 /* MISC CONSTANTS */
-#define MAXPULSE 16383 // 14-bit
 #define MOTORFREQ 30000
 #define LEDFREQ 1
 #define PRESETPOINT 1600
@@ -15,12 +13,12 @@
 #define IN2PIN 18
 #define IN1CHANNEL 6
 #define IN2CHANNEL 9
-#define LEDPIN 15
+#define LEDPIN 23
 #define LEDCHANNEL 0
 #define SENSOR2PIN 5
 #define ECHOPIN 4
 #define TRIGGERPIN 2
-//#define RESETPIN 
+//#define HOMING 22
 /* LED DUTY CYCLES */
 #define TENPERC 6554
 #define FORTYPERC 26214
@@ -46,10 +44,8 @@ volatile long count = 0;
 */
 
 /* GLOBAL VARIABLE DECLARATION */
- double setPosition;
-// double input, output;
-// double Kp = 1, Ki = 0.05, Kd = 0.7;
-#define KP 0.2
+volatile double setPosition;
+#define KP 0.22
 #define KI 0.0
 #define KD 0.0
 volatile int pulse = 0;
@@ -57,7 +53,7 @@ volatile bool home = true;
 volatile int state = 1;
 bool reset = true;
 
-volatile double setpoint = 720; // trial and error for desired position
+//volatile double setpoint = 0; // desired
 volatile double input = 0;
 double error = 0;
 double prev_error = 0;
@@ -72,7 +68,6 @@ double dt;
 /* INITIALIZE PID TIMER, MOTOR PID MODEL, AND SENSOR */
 hw_timer_t *pidTimer = NULL;
 UltraSonicDistanceSensor distanceSensor(TRIGGERPIN, ECHOPIN);
-//PID motorPID(&input, &output, &setPosition, Kp, Ki, Kd, DIRECT);
 
 void setup()
 {
@@ -122,37 +117,35 @@ void setup()
   pidTimer = timerBegin(2, 1, true); // pidTimer number 2, divider = 1 bc no prescalar needed
   timerAttachInterrupt(pidTimer, &PIDFunc, true);
   timerAlarmWrite(pidTimer, 80000, true); // Every 1Khz PID will run 80MHz/80000 = 1Khz
-//  motorPID.SetMode(AUTOMATIC);
 
   attachInterrupt(digitalPinToInterrupt(SENSOR2PIN), openClawISR, RISING);
 }
 
 void loop()
 {
+  float distance;
 //  if (reset) {
-//    while(digitalRead(RESETPIN) == LOW){
+//    while(digitalRead(HOMING) == LOW){
 //      ledcWrite(IN1CHANNEL, 255);
 //      ledcWrite(IN2CHANNEL, 0);
 //    }
+//    count = 0;
 //    reset = false;
 //  }
 
   switch(state) {
     case 1:
-//      timerAlarmEnable(pidTimer);
-//      ledcWrite(LEDCHANNEL, SEVENTYPERC);
-//   
-//      float distance = distanceSensor.measureDistanceCm();
-//    
-//      Serial.print("Distance from object: ");
-//      Serial.println(distance);
-//      
-//      if (a <= 15 && a >= 0) {
+      ledcWrite(LEDCHANNEL, SEVENTYPERC);
+   
+      distance = distanceSensor.measureDistanceCm();
+    
+      Serial.print("Distance from object: ");
+      Serial.println(distance);
+      
+      if (distance <= 15 && distance >= 0) {
         digitalWrite(MOTORPIN, HIGH);
-        Serial.print("Starting close claw");
-        delay(5000);
         closeClaw();
-//      }
+      }
       break;
     case 2:
       travelClaw();
@@ -161,18 +154,12 @@ void loop()
       openClaw();
       break;
     case 4:
-          // read encoder pulse 
+      // read encoder pulse 
       digitalWrite(OEN, HIGH); // Disable OE
       getPulseCount();
   
-      Serial.println("Current pulse, input: ");
+      Serial.println("Current pulse: ");+
       Serial.println(count);
-      input = abs(setPosition-count);
-
-      Serial.print(input);
-  
-//      pulse = count;
-//      motorPID.Compute();
       Serial.println("Set position, output: ");
       Serial.println(setPosition);
       Serial.println(speed);      
@@ -184,26 +171,18 @@ void loop()
 
 void closeClaw()
 {
-//  Serial.println("Entering closeClaw state");
+  Serial.println("Entering closeClaw state");
   ledcWrite(LEDCHANNEL, TENPERC);
-  setPosition = 7000;
-
+  setPosition = 2000;
 
   // Start PID
   home = false;
   state = 4;
   timerAlarmEnable(pidTimer);
-
-//  // Should not get to this case, but goes to next state if PID > 30s
-//  delay(30000);
-//
-//  // Next state: Travel Claw
-//  travelClaw();
 }
 
 void PIDFunc()
 {
-
   if (!home)
   {
     int pin;
@@ -215,20 +194,17 @@ void PIDFunc()
       pin2 = IN1CHANNEL;
     } else {
       // Motor running to open (backward)
-      
       pin = IN1CHANNEL;
       pin2 = IN2CHANNEL;
     }
-//      input = abs(setPosition-count);
       pulse = count;
-//      motorPID.Compute();
-pid_controller(setPosition, count);
+    pid_controller(setPosition, count);
     // slow down motor
-    ledcWrite(pin, speed);
+    ledcWrite(pin, speed/1.417);
     ledcWrite(pin2, 0);
 
     // PID settles close enough
-    if (speed == 0)
+    if (speed/1.417 < 3)
     { 
       if (setPosition == 0)
       {
@@ -284,11 +260,7 @@ void travelClaw()
   ledcWrite(IN1CHANNEL, 0);
   ledcWrite(IN2CHANNEL, 0);
 
-  // Should not get to this case, but goes to next state if
-  // it doesn't see sensor for > 30s
   state = 4;
-  // Next state: openClaw()
-//  openClaw();
 }
 
 void openClawISR() {
@@ -306,13 +278,6 @@ void openClaw()
   // Start PID
   home = false;
   state = 4;
-
-//  // Should not get to this case, but goes to next state if PID > 30s
-//  delay(30000);
-//
-//  // Next state: Home
-//  homeState = true;
-//  home = true;
 }
 
 /* PLD encoder code*/
