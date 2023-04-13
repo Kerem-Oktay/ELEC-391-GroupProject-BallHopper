@@ -7,20 +7,20 @@
 #define MAXPULSE 16383 // 14-bit
 #define MOTORFREQ 30000
 #define LEDFREQ 1
-#define PRESETPOINT 8544
+#define PRESETPOINT 1600
 
 /* PINS */
-#define MOTORPIN 15
-#define IN1PIN 4
-#define IN2PIN 12
+#define MOTORPIN 19
+#define IN1PIN 21
+#define IN2PIN 18
 #define IN1CHANNEL 6
 #define IN2CHANNEL 9
-#define LEDPIN 21
+#define LEDPIN 15
 #define LEDCHANNEL 0
 #define SENSOR2PIN 5
-#define ECHOPIN 19
-#define TRIGGERPIN 18
-
+#define ECHOPIN 4
+#define TRIGGERPIN 2
+//#define RESETPIN 
 /* LED DUTY CYCLES */
 #define TENPERC 6554
 #define FORTYPERC 26214
@@ -46,14 +46,13 @@ volatile long count = 0;
 */
 
 /* GLOBAL VARIABLE DECLARATION */
-double setPosition;
-double input, output;
-double Kp = 0.5, Ki = 0.1, Kd = 0.5;
-int pulse = 0;
-int pulseOverflow = 0;
-bool home = true;
-bool homeState = true;
-bool flag = false;
+ double setPosition;
+ double input, output;
+ double Kp = 1, Ki = 0.05, Kd = 0.7;
+volatile int pulse = 0;
+volatile bool home = true;
+volatile int state = 1;
+bool reset = true;
 
 /* INITIALIZE PID TIMER, MOTOR PID MODEL, AND SENSOR */
 hw_timer_t *pidTimer = NULL;
@@ -79,6 +78,7 @@ void setup()
   pinMode(BIT0,INPUT);
   pinMode(BIT1,INPUT);
   pinMode(SENSOR2PIN, INPUT);
+  //pinMode(RESETPIN, INPUT);
 
   // LED states at 1Hz PWM and 16 bit resolution at channel 0
   ledcAttachPin(LEDPIN, LEDCHANNEL);
@@ -105,7 +105,7 @@ void setup()
 
   // ISRs
   pidTimer = timerBegin(2, 1, true); // pidTimer number 2, divider = 1 bc no prescalar needed
-  timerAttachInterrupt(pidTimer, &PID, true);
+  timerAttachInterrupt(pidTimer, &PIDFunc, true);
   timerAlarmWrite(pidTimer, 80000, true); // Every 1Khz PID will run 80MHz/80000 = 1Khz
   motorPID.SetMode(AUTOMATIC);
 
@@ -114,101 +114,115 @@ void setup()
 
 void loop()
 {
-  if (homeState){
-    ledcWrite(LEDCHANNEL, SEVENTYPERC);
+//  if (reset) {
+//    while(digitalRead(RESETPIN) == LOW){
+//      ledcWrite(IN1CHANNEL, 255);
+//      ledcWrite(IN2CHANNEL, 0);
+//    }
+//    reset = false;
+//  }
+
+  switch(state) {
+    case 1:
+//      timerAlarmEnable(pidTimer);
+//      ledcWrite(LEDCHANNEL, SEVENTYPERC);
+//   
+//      float distance = distanceSensor.measureDistanceCm();
+//    
+//      Serial.print("Distance from object: ");
+//      Serial.println(distance);
+//      
+//      if (a <= 15 && a >= 0) {
+        digitalWrite(MOTORPIN, HIGH);
+        Serial.print("Starting close claw");
+        delay(5000);
+        closeClaw();
+//      }
+      break;
+    case 2:
+      travelClaw();
+      break;
+    case 3:
+      openClaw();
+      break;
+    case 4:
+          // read encoder pulse 
+      digitalWrite(OEN, HIGH); // Disable OE
+      getPulseCount();
   
-    digitalWrite(MOTORPIN, LOW);
-    float distance = distanceSensor.measureDistanceCm();
+      Serial.println("Current pulse, input: ");
+      Serial.println(count);
+      input = abs(setPosition-count);
+
+      Serial.print(input);
   
-    Serial.print("Distance from object: ");
-    Serial.println(distance);
-  
-    if (distance <= 15.0 && distance >= 0 && home)
-    {
-      closeClaw();
-    }
-  } else {
-    openClaw();
+//      pulse = count;
+//      motorPID.Compute();
+      Serial.println("Set position, output: ");
+      Serial.println(setPosition);
+      Serial.println(output);      
+      break;
+    default:
+      Serial.println("Error, no such state");
   }
 }
 
 void closeClaw()
 {
-  Serial.println("Entering closeClaw state");
+//  Serial.println("Entering closeClaw state");
   ledcWrite(LEDCHANNEL, TENPERC);
-  setPosition = 8544;
-  flag = true;
+  setPosition = 1600;
 
-  // Initialize motor pin without PID
-  digitalWrite(MOTORPIN, HIGH);
 
   // Start PID
   home = false;
+  state = 4;
   timerAlarmEnable(pidTimer);
 
-  // Should not get to this case, but goes to next state if PID > 30s
-  delay(30000);
-
-  // Next state: Travel Claw
-  travelClaw();
+//  // Should not get to this case, but goes to next state if PID > 30s
+//  delay(30000);
+//
+//  // Next state: Travel Claw
+//  travelClaw();
 }
 
-void PID()
+void PIDFunc()
 {
+
   if (!home)
   {
     int pin;
     int pin2;
 
-    // read encoder pulse 
-    digitalWrite(OEN, HIGH); // Disable OE
-    getPulseCount();
-
-    Serial.print("Current pulse, prev pulse, max pulse: ");
-    Serial.println(count);
-    Serial.println(pulse);
-//    Serial.println(MAXPULSE);
-
-    // Motor running forwards
-    if (setPosition > count) {
-      pin = IN1CHANNEL;
-      pin2 = IN2CHANNEL;
-      Serial.println("Motor running forwards");
-    } else {
-      // Motor running backwards
+    // Motor running to close (forward)
+    if (setPosition < count) {
       pin = IN2CHANNEL;
       pin2 = IN1CHANNEL;
-      Serial.println("Motor running backwards");
+    } else {
+      // Motor running to open (backward)
+      
+      pin = IN1CHANNEL;
+      pin2 = IN2CHANNEL;
     }
-
-    input = abs(setPosition-count);
-
-    pulse = count;
-    motorPID.Compute();
-
+//      input = abs(setPosition-count);
+      pulse = count;
+      motorPID.Compute();
     // slow down motor
     ledcWrite(pin, output);
     ledcWrite(pin2, 0);
 
-    Serial.println("New overall pulse, PID output: ");
-    Serial.println(pulse);
-    Serial.println(output);
-
     // PID settles close enough
     if (output == 0)
     { 
-      timerAlarmDisable(pidTimer);
-
-      if (flag)
+      if (setPosition == 0)
       {
-        travelClaw();
+        state = 1;
       }
       else
       {
-        Serial.println("Entering home state");
-        homeState = true;
-        return;
+        state = 2;
       }
+      home = true;
     }
   }
 }
@@ -225,15 +239,13 @@ void travelClaw()
 
   // Should not get to this case, but goes to next state if
   // it doesn't see sensor for > 30s
-  delay(30000);
-
+  state = 4;
   // Next state: openClaw()
 //  openClaw();
-  return;
 }
 
 void openClawISR() {
-  homeState = false;
+  state = 3;
 }
 
 // Last state (ISR):
@@ -243,18 +255,17 @@ void openClaw()
   // ISR sense
   ledcWrite(LEDCHANNEL, ONEHUNPERC);
   setPosition = 0;
-  flag = false;
 
   // Start PID
   home = false;
-  timerAlarmEnable(pidTimer);
+  state = 4;
 
-  // Should not get to this case, but goes to next state if PID > 30s
-  delay(30000);
-
-  // Next state: Home
-  homeState = true;
-  home = true;
+//  // Should not get to this case, but goes to next state if PID > 30s
+//  delay(30000);
+//
+//  // Next state: Home
+//  homeState = true;
+//  home = true;
 }
 
 /* PLD encoder code*/
