@@ -25,3 +25,4 @@ ELEC 391 - Electrical Engineering Design Studio II (January - March 2023)
 
 ## Other Videos
 - Fingers opening and closing: https://drive.google.com/file/d/1yS_-Fr6xO_KhF4LMuMfDDbp4060NnIY1/view?usp=sharing
+- The control system working: https://drive.google.com/file/d/1pgXOPBrIMusSZi8hItNfwTtvf7tGX0xt/view?usp=sharing
