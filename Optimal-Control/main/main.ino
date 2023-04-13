@@ -47,17 +47,32 @@ volatile long count = 0;
 
 /* GLOBAL VARIABLE DECLARATION */
  double setPosition;
- double input, output;
- double Kp = 1, Ki = 0.05, Kd = 0.7;
+// double input, output;
+// double Kp = 1, Ki = 0.05, Kd = 0.7;
+#define KP 0.2
+#define KI 0.0
+#define KD 0.0
 volatile int pulse = 0;
 volatile bool home = true;
 volatile int state = 1;
 bool reset = true;
 
+volatile double setpoint = 720; // trial and error for desired position
+volatile double input = 0;
+double error = 0;
+double prev_error = 0;
+double integral = 0;
+double derivative = 0;
+unsigned long prev_time = 0;
+unsigned long current_time = 0;
+int sensor1;
+double speed = 0;
+double dt;
+
 /* INITIALIZE PID TIMER, MOTOR PID MODEL, AND SENSOR */
 hw_timer_t *pidTimer = NULL;
 UltraSonicDistanceSensor distanceSensor(TRIGGERPIN, ECHOPIN);
-PID motorPID(&input, &output, &setPosition, Kp, Ki, Kd, DIRECT);
+//PID motorPID(&input, &output, &setPosition, Kp, Ki, Kd, DIRECT);
 
 void setup()
 {
@@ -107,7 +122,7 @@ void setup()
   pidTimer = timerBegin(2, 1, true); // pidTimer number 2, divider = 1 bc no prescalar needed
   timerAttachInterrupt(pidTimer, &PIDFunc, true);
   timerAlarmWrite(pidTimer, 80000, true); // Every 1Khz PID will run 80MHz/80000 = 1Khz
-  motorPID.SetMode(AUTOMATIC);
+//  motorPID.SetMode(AUTOMATIC);
 
   attachInterrupt(digitalPinToInterrupt(SENSOR2PIN), openClawISR, RISING);
 }
@@ -160,7 +175,7 @@ void loop()
 //      motorPID.Compute();
       Serial.println("Set position, output: ");
       Serial.println(setPosition);
-      Serial.println(output);      
+      Serial.println(speed);      
       break;
     default:
       Serial.println("Error, no such state");
@@ -171,7 +186,7 @@ void closeClaw()
 {
 //  Serial.println("Entering closeClaw state");
   ledcWrite(LEDCHANNEL, TENPERC);
-  setPosition = 1600;
+  setPosition = 7000;
 
 
   // Start PID
@@ -206,13 +221,14 @@ void PIDFunc()
     }
 //      input = abs(setPosition-count);
       pulse = count;
-      motorPID.Compute();
+//      motorPID.Compute();
+pid_controller(setPosition, count);
     // slow down motor
-    ledcWrite(pin, output);
+    ledcWrite(pin, speed);
     ledcWrite(pin2, 0);
 
     // PID settles close enough
-    if (output == 0)
+    if (speed == 0)
     { 
       if (setPosition == 0)
       {
@@ -225,6 +241,37 @@ void PIDFunc()
       home = true;
     }
   }
+}
+
+// PID controller
+void pid_controller(double setpoint, double input)
+{
+    // time difference
+
+    current_time = millis();
+    dt = (current_time - prev_time);
+    prev_time = current_time;
+
+    dt = dt / 1000.0;
+
+    // error
+    error = abs(setpoint - input); // abs(error)?
+
+    // Calculate integral and derivative
+    integral += error * dt;
+    derivative = (error - prev_error) / dt;
+
+    // Calculate output
+    speed = KP * error + KI * integral + KD * derivative;
+
+    // cap pwm to 255
+    if (speed > 255)
+    {
+        speed = 255;
+    }
+
+    // Update variables for next iteration
+    prev_error = error;
 }
 
 void travelClaw()
