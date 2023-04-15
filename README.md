@@ -24,5 +24,7 @@ ELEC 391 - Electrical Engineering Design Studio II (January - March 2023)
 - Gripper Mechanism Simulation on MATLAB/Simulink: https://drive.google.com/drive/folders/1JD9nbEjx4Q1AWdH3Mn-C0eqIqGHE8A6V?usp=sharing
 
 ## Other Videos
-- Motor moving the fingers: https://drive.google.com/file/d/1yS_-Fr6xO_KhF4LMuMfDDbp4060NnIY1/view?usp=sharing
 - The control system working before integration, with sensors: https://drive.google.com/file/d/1pgXOPBrIMusSZi8hItNfwTtvf7tGX0xt/view?usp=sharing
+- Motor moving the fingers: https://drive.google.com/file/d/19ZQQKfPF29rKkGoej6QkP3fz3SBA11u9/view?usp=sharing
+- The finger picking up a tennis ball: https://drive.google.com/file/d/1Nz7Qj5wmDarD6SwZJ-01VuMlN-VZ1lDX/view?usp=sharing
+
